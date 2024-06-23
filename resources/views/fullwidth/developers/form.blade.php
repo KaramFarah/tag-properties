@@ -1,13 +1,5 @@
 <x-inputs.text inputName="name" inputId="name" inputLabel="{{ __('Name') }}" inputRequired="required" inputValue="{{ old('name', $developer->name ?? '') }}" class="mb-30"/>
 <x-inputs.textarea inputName="description" inputId="description" inputLabel="{{ __('Description') }}" inputRequired="" inputValue="{{ old('description', $developer->description ?? '') }}" class="mb-30"/>
-<div class="row mb-30">
-    <div class="col-lg-8">
-        <x-inputs.select inputName="cities[]" inputId="cities" inputLabel="{{ __('Cities') }}" placeholder="{{ __('Select Cities') }}" :inputValue="old('cities',  $developer->cities ?? '')" :inputData="$cities" inputClass="select2 mb-30" inputType="multiple"/>
-    </div>
-    <div class="col-lg-4">
-        <x-inputs.text inputName="order" inputId="order" inputLabel="{{ __('Order') }}" inputValue="{{ old('name', $developer->order ?? '') }}" type="number" class="mb-30"/>
-    </div>
-</div>
 <div class="row">
     <div class="col mb-30">
         <div class="border rounded bg-white p-30">

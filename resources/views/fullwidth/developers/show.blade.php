@@ -51,28 +51,10 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ __('City') }}</h5>
-                                        </th>
-                                        <td>
-                                            @foreach($developer->cities as $_city)
-                                                <span class="badge bg-info fs-6 m-1">{{ $_city->name }}</span>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
                                             {{ __('Description') }}</h5>
                                         </th>
                                         <td>
                                             {{ $developer->description }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ __('Order') }}</h5>
-                                        </th>
-                                        <td>
-                                            {{ $developer->order }}
                                         </td>
                                     </tr>
                                     <tr>

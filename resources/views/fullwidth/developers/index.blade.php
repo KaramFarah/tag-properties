@@ -33,16 +33,10 @@
                                     <th>
                                         {{ __('Id') }}
                                     </th>
-                                    <th class="w-25">
+                                    <th class="w-75">
                                         {{ __('Name') }}
                                     </th>
                                     <th>
-                                        {{ __('City') }}
-                                    </th>
-                                    <th>
-                                        {{ __('Order') }}
-                                    </th>
-                                    <th class="w-25">
                                         {{ __('Options') }}
                                     </th>
                                 </tr>
@@ -58,15 +52,7 @@
                                                 <img class="rounded" src="{{ $developer->logoThumb ?? '' }}" alt="{{$developer->name }} logo thumbnail">
                                             @endif
                                             <h5 class="text-secondary font-400">{{ $developer->name }}</h5>
-                                            {{ Str::words($developer->description, 4) }}
-                                        </td>
-                                        <td>
-                                            @foreach($developer->cities as $_city)
-                                                <span class="badge bg-info fs-6 m-1">{{ $_city->name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            {{ $developer->order }}
+                                            {{ Str::words($developer->description, 15) }}
                                         </td>
                                         <td>
                                             @can('developer_show')

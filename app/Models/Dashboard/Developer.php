@@ -61,9 +61,4 @@ class Developer extends BaseModel implements HasMedia
 
         return $developer_units;
     }
-
-    public function cities()
-    {
-        return $this->belongsToMany(City::class, 'developer_city');
-    }
 }
