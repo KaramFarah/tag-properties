@@ -10,10 +10,10 @@
                     <p>Committed to elevating your real estate endeavors with our extensive expertise and personalized guidance in the dynamic UAE market. Our seasoned team of professionals brings years of experience in property advisory, investment analysis, and real estate consultation, ensuring that your unique goals and needs are not only met but exceeded.</p>
                 </div>
                 <div class="footer-widget media-widget mb-4">
-                    <a href="https://www.facebook.com/tagproperties.ae/" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/company/tag-properties-llc" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="https://www.youtube.com/channel/UC5w-CjUA0LWxvs8C3rR5l3g" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://instagram.com/tagproperties.ae?igshid=g2u7rdj44oz7" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
             <div class="col">

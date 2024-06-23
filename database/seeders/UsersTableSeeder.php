@@ -10,12 +10,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users = [
-            // [
-            //     'name'           => 'Super Admin',
-            //     'email'          => 'walid@orjwan.net',
-            //     'password'       => bcrypt('TagProperties@1'),
-            //     'remember_token' => null,
-            // ],
             [
                 'name'           => 'Super Admin',
                 'email'          => 'karam@tishreen.net',

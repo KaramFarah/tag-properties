@@ -55,19 +55,6 @@ class HomeController extends BaseController
         return view($this->template . '.home', compact('local_title', 'breadcrumbs', 'params'));
     }
 
-    public function changeLog()
-    {
-        abort_if(Gate::denies('change_log_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
-        $local_title = __('Change Logs');
-        $breadcrumbs[] = ['label' => __('Dashboard'), 'url' => route('dashboard.home')];
-        $breadcrumbs[] = ['label' => $local_title];
-        
-        $changelogs = DashboardHelper::getChangeLogs();
-        
-        return view($this->template . '.changelog', compact('local_title', 'breadcrumbs', 'changelogs'));
-    }
-
     public function clearCache(){
         abort_if(Gate::denies('clear_cache_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 

@@ -56,7 +56,6 @@ Route::group(['namespace' => 'Website'], function (){
 
 Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'namespace' => 'Dashboard', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('change-log', 'HomeController@changeLog')->name('change-log');
     Route::get('clear-cache', 'HomeController@clearCache')->name('clear-cache');
 
     // Permissions

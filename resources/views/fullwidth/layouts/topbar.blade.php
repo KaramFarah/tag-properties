@@ -8,7 +8,7 @@
                             <ul class="navbar-nav sm-mx-none">
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#">{{__('Dashboard Options')}}</a>
-                                    {{-- <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu">
                                         
                                         @can('lead_create')
                                         <li><a class="dropdown-item" href="{{ route('dashboard.leads.create') }}">{{ __('Add Lead') }}</a></li>
@@ -19,7 +19,7 @@
                                         @can('unit_create')
                                         <li><a class="dropdown-item" href="{{ route('dashboard.units.create') }}">{{ __('Submit Property') }}</a></li>
                                         @endcan
-                                    </ul> --}}
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="flaticon-notification flat-mini"></i></a>

@@ -39,25 +39,25 @@ class DashboardHelper
                         'active' => request()->routeIs('dashboard.projects.*'),
                         'can' => 'project_access',
                     ],
-                    // [
-                    //     'label' => __('Submit Property'), 
-                    //     'route' => 'dashboard.units.create',
-                    //     'active' => request()->routeIs('dashboard.units.create'),
-                    //     'can' => 'unit_access',
-                    // ],
-                    // [
-                    //     'label' => __('Properties'), 
-                    //     'route' => 'dashboard.units.index',
-                    //     'active' => request()->routeIs('dashboard.units.*'),
-                    //     'can' => 'unit_access',
-                    // ],
+                    [
+                        'label' => __('Submit Property'), 
+                        'route' => 'dashboard.units.create',
+                        'active' => request()->routeIs('dashboard.units.create'),
+                        'can' => 'unit_access',
+                    ],
+                    [
+                        'label' => __('Properties'), 
+                        'route' => 'dashboard.units.index',
+                        'active' => request()->routeIs('dashboard.units.*'),
+                        'can' => 'unit_access',
+                    ],
               
-                    // [
-                    //     'label' => __('Financial Notes'), 
-                    //     'route' => 'dashboard.installments.index',
-                    //     'active' => request()->routeIs('dashboard.installments.*'),
-                    //     'can' => 'installment_access',
-                    // ],
+                    [
+                        'label' => __('Financial Notes'), 
+                        'route' => 'dashboard.installments.index',
+                        'active' => request()->routeIs('dashboard.installments.*'),
+                        'can' => 'installment_access',
+                    ],
                 ],
             ],
             [
@@ -72,24 +72,24 @@ class DashboardHelper
                         'active' => request()->routeIs('dashboard.campaigns.*'),
                         'can' => 'campaign_access',
                     ],
-                    // [
-                    //     'label' => __('Leads'), 
-                    //     'route' => 'dashboard.leads.index',
-                    //     'active' => request()->routeIs('dashboard.leads.*'),
-                    //     'can' => 'lead_access',
-                    // ],
+                    [
+                        'label' => __('Leads'), 
+                        'route' => 'dashboard.leads.index',
+                        'active' => request()->routeIs('dashboard.leads.*'),
+                        'can' => 'lead_access',
+                    ],
                     [
                         'label' => __('Clients'), 
                         'route' => 'dashboard.contacts.index',
                         'active' => request()->routeIs('dashboard.contacts.*') || request()->routeIs('dashboard.leads-convert'),
                         'can' => 'contact_access',
                     ],
-                    // [
-                    //     'label' => __('Action Registery'), 
-                    //     'route' => 'dashboard.actions.index',
-                    //     'active' => request()->routeIs('dashboard.actions.*'),
-                    //     'can' => 'call_access',
-                    // ],
+                    [
+                        'label' => __('Action Registery'), 
+                        'route' => 'dashboard.actions.index',
+                        'active' => request()->routeIs('dashboard.actions.*'),
+                        'can' => 'call_access',
+                    ],
                     [
                         'label' => __('Agents'), 
                         'route' => 'dashboard.agents.index',
@@ -104,18 +104,18 @@ class DashboardHelper
                 'can' => 'content_access',
                 'icon' => 'flaticon-survey flat-mini',
                 'items' => [
-                    // [
-                    //     'label' => __('Blogs'), 
-                    //     'route' => 'dashboard.blogs.index',
-                    //     'active' => request()->routeIs('dashboard.blogs.*'),
-                    //     'can' => 'blog_access',
-                    // ],
-                    // [
-                    //     'label' => __('Careers'), 
-                    //     'route' => 'dashboard.careers.index',
-                    //     'active' => request()->routeIs('dashboard.careers.*'),
-                    //     'can' => 'career_access'
-                    // ],
+                    [
+                        'label' => __('Blogs'), 
+                        'route' => 'dashboard.blogs.index',
+                        'active' => request()->routeIs('dashboard.blogs.*'),
+                        'can' => 'blog_access',
+                    ],
+                    [
+                        'label' => __('Careers'), 
+                        'route' => 'dashboard.careers.index',
+                        'active' => request()->routeIs('dashboard.careers.*'),
+                        'can' => 'career_access'
+                    ],
                     [
                         'label' => __('Tags'), 
                         'route' => 'dashboard.tags.index',
@@ -163,163 +163,15 @@ class DashboardHelper
                 'can' => 'audit_log_access',
                 'icon' => 'flaticon-audit flat-mini',
             ],
-            // [
-            //     'label' => __('Change Logs'), 
-            //     'route' => 'dashboard.change-log',
-            //     'active' => request()->routeIs('dashboard.change-log'),
-            //     'can' => 'change_log_access',
-            //     'icon' => 'flaticon-clock-circular-outline flat-mini',
-            // ],
-            // [
-            //     'label' => __('Mass Cache Clear'), 
-            //     'route' => 'dashboard.clear-cache',
-            //     'active' => request()->routeIs('dashboard.clear-cache'),
-            //     'can' => 'clear_cache_access',
-            //     'icon' => 'flaticon-arrow flat-mini',
-            // ],
-            // [
-            //     'label' => '<i class="fa-solid fa-link pe-1"></i> ' . __('Website'),
-            //     // 'url' => route('dashboard.home'),
-            //     'route' => 'homepage',
-            //     'active' => false,
-            //     'can' => 'public', //'home_access',
-            // ],
+            [
+                'label' => '<i class="fa-solid fa-link pe-1"></i> ' . __('Website'),
+                // 'url' => route('dashboard.home'),
+                'route' => 'homepage',
+                'active' => false,
+                'can' => 'public', //'home_access',
+            ],
         ];
         return $_menuitems;
-    }
-
-    static public function getChangeLogs() : array
-    {
-        return [
-            '1.14.0' => [
-                'date' => '2024/03/10',
-                'changes' => [
-                    'Bug fixes',
-                    'Updated project details page',
-                    'Enabled download buttons and collect lead inforamtion'
-                ],
-            ],
-            '1.13.0' => [
-                'date' => '2024/03/08',
-                'changes' => [
-                    'Bug fixes',
-                    'Project section new view',
-                    'Blog Title and Breadcrumbs',
-                    'Show alerts after submission',
-                    'Generate lead from career updated'
-                ],
-            ],
-            '1.12.0' => [
-                'date' => '2024/03/05',
-                'changes' => [
-                    'Bug fixes',
-                    'Live Chat - Brevo',
-                    'Website menu updates',
-                    'Added Google reCptcha to forms',
-                    'Added remove files in Projects'
-                ],
-            ],
-            '1.11.0' => [
-                'date' => '2024/03/03',
-                'changes' => [
-                    'Bug fixes',
-                    'Update Property Fields',
-                    'Project Manager',
-                    'Developer with City',
-                    'Fix Upload CV'
-                ],
-            ],
-            '1.10.0' => [
-                'date' => '2024/02/29',
-                'changes' => [
-                    'Updated UI/UX',
-                    'New Submit Property (wizard)',
-                    'New projects',
-                    'Get Help Form',
-                    'Insert lead when register and get help submitted'
-                ],
-            ],
-            '1.9.0' => [
-                'date' => '2024/01/25',
-                'changes' => [
-                    'Updated UI/UX',
-                    'Updated dashboard Tags search and type field',
-                    'Updated website properties search'
-                ],
-            ],
-            '1.8.0' => [
-                'date' => '2024/01/22',
-                'changes' => [
-                    'Update UI/UX',
-                    'Added spoken langauges to agent',
-                    'Updated Properties manager and website pages'
-                ],
-            ],
-            '1.7.0' => [
-                'date' => '2024/01/15',
-                'changes' => [
-                    'Updated Floor plans and NearBy places in new property submission form',
-                    'Update UI/UX'
-                ],
-            ],
-            '1.6.0' => [
-                'date' => '2024/01/09',
-                'changes' => [
-                    'Updated show/details page design to better display of related information'
-                ],
-            ],
-            '1.5.1' => [
-                'date' => '2024/01/07',
-                'changes' => [
-                    'Added Activities button to Lead',
-                    'Updated Table view and search for Tags, Blogs, Users, Roles and Permissions',
-                    'Updated Blogs image sizes'
-                ],
-            ],
-            '1.5.0' => [
-                'date' => '2024/01/05',
-                'changes' => [
-                    'Change lead details view',
-                    'Changed call to action',
-                    'Bug fixes'
-                ],
-            ],
-            '1.4.0' => [
-                'date' => '2023/12/30',
-                'changes' => [
-                    'Updated permissions for agent and other roles',
-                    'Show lead details page updated',
-                    'Bug fixes'
-                ],
-            ],
-            '1.3.0' => [
-                'date' => '2023/12/21',
-                'changes' => [
-                    'Changes in lead and client relation',
-                    'Visual improvments',
-                    'Bug fixes'
-                ],
-            ],
-            '1.2.0' => [
-                'date' => '2023/11/29',
-                'changes' => [
-                    'Lead Managment',
-                ],
-            ],
-            '1.1.0' => [
-                'date' => '2023/11/16',
-                'changes' => [
-                    'Property Listings: Projects',
-                ],
-            ],
-            '1.0.2' => [
-                'date' => '2023/10/23',
-                'changes' => [
-                    'Added New Template',
-                    'Updated Activity Log style',
-                ],
-            ],
-        ];
     }
 
     static public function createLead($data, $campaing = 'Website - Registration')
