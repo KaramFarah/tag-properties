@@ -1,13 +1,15 @@
 @section('styles')
-    <script src="{{ asset('assets/fullwidth/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
-    <script>
-        tinymce.init({
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<script src="{{ asset('assets/fullwidth/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
         selector: '#project_features'
-        });
+    });
     </script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 @endsection
+@include('website.partials.map-integration')
 <div class="row">
     <div class="col mb-30">
         <div class="border rounded bg-white p-30">
@@ -60,9 +62,12 @@
                 <div class="col-lg-6">
                     <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Community') }}" inputRequired="required" inputValue="{{ old('community', $project->community ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
                 </div>
-                <div class="col-lg-6">
-                    <x-inputs.text inputName="location" inputId="location" inputLabel="{{ __('Location') }}" inputRequired="" inputValue="{{ old('location', $project->location ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
-                </div>
+            </div>
+            <div class="row">
+                <label for="location">Location</label>
+                <input type="hidden" name="location" id="location" value="{{ old('location', $project->location ?? '35.52052844635452;35.80705384863964') }}">        
+                <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
+            
             </div>
             {{-- <div class="row mb-30">
                 <div class="d-flex align-items-center">
@@ -398,36 +403,6 @@
             });
         });
     </script>
-
-    {{-- map integration --}}
-    {{-- <script>
-        var initialplace = document.getElementById('location').value;
-        let coordinates = initialplace.split(';')
-        var map = L.map('map').setView([coordinates[0], coordinates[1]], 13);
-
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        var marker = L.marker([coordinates[0], coordinates[1]]).addTo(map)
-        .bindPopup('Welcome To TAG Properties.<br> You Can Choose Your Property Location Here.')
-        .openPopup();
-
-        // var popup = L.popup();
-
-        function onMapClick(e) {
-            marker
-                .setLatLng(e.latlng)
-                // .bindPopup('New Location Was Selected!')
-                // .openPopup();
-
-            let result = `${e.latlng.lat};${e.latlng.lng}`;
-            document.getElementById('location').value = result;
-            console.log(result);
-        }
-
-        map.on('click', onMapClick);
-    </script> --}}
 
     @can('developer_create')
         <script>

@@ -176,7 +176,7 @@ class ProjectsController extends BaseController
     {
         abort_if(Gate::denies('project_edit') || !$project->allowEdit, Response::HTTP_FORBIDDEN, '403 Forbidden');
         $cities = City::orderBy('name')->pluck('name', 'id')->all();
-        $coordinates = $project->location ?? '25.276987;55.296249';
+        $coordinates = $project->location ?? '35.52052844635452;35.80705384863964';
         $openDates = $this->getOpeningDates();
         $emirates = $this->getEmirates();
         // $places = $this->getPlaces();

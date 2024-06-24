@@ -1,4 +1,5 @@
 @extends('fullwidth.layouts.app')
+@include('website.partials.map-integration')
 @section('content')
     <div class="text-end mb-30">
         <a class="btn btn-secondary" target="_blank" href="{{ route('projects.show', $project->slug) }}">
@@ -251,6 +252,17 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                @if ($project->location ?? false)
+                                    <input type="hidden" name="location" id="location" value="{{ $project->location ?? '35.52052844635452;35.80705384863964' }}">
+                                    <div class="property-overview border rounded bg-white p-30 mb-30">
+                                        <div class="row row-cols-1">
+                                            <div class="col">
+                                                <h5 class="mb-3">{{__('Location')}}</h5>
+                                                <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                                 @if ($project->ranges->count())
                                     <div class="accordion" id="formContainer">
                                         <h5>{{__('Size & Price Ranges')}}</h5>

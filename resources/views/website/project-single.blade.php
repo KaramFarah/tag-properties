@@ -1,11 +1,7 @@
 @extends('website.layout.app-blog')
 @section('pageTitle', __($project->name) . ' | ' . __('Projects') . ' | ' . config('panel.website_title'))
 @section('pageDescription', __($project->name) . ', ' . __('Projects') . ' | ' . config('panel.website_title'))
-{{-- @section('styles')
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-@endsection --}}
+@include('website.partials.map-integration')
 @section('content')
     @include('website.layout.title-banner-light')
 <!--============== Property Slider Start ==============-->
@@ -405,8 +401,9 @@
                             </div>
                         </div>
                     @endif
-                    @if ($project->project->location ?? false)
-                        <input type="hidden" name="location" id="location" value="{{ $project->project->location ?? '' }}">
+                    
+                    @if ($project->location ?? false)
+                        <input type="hidden" name="location" id="location" value="{{ $project->location ?? '35.52052844635452;35.80705384863964' }}">
                         <div class="property-overview border rounded bg-white p-30 mb-30">
                             <div class="row row-cols-1">
                                 <div class="col">
@@ -517,7 +514,7 @@ $(document).ready(function() {
 
 
     {{-- map integration --}}
-    {{-- <script>
+    <script>
         var initialplace = document.getElementById('location').value;
         let coordinates = initialplace.split(';')
         var map = L.map('map').setView([coordinates[0], coordinates[1]], 13);
@@ -530,5 +527,5 @@ $(document).ready(function() {
         .bindPopup('{{$project->name}}')
         .openPopup();
         map.on('click', onMapClick);
-    </script> --}}
+    </script>
 @endpush

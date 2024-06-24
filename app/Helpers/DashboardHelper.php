@@ -39,12 +39,12 @@ class DashboardHelper
                         'active' => request()->routeIs('dashboard.projects.*'),
                         'can' => 'project_access',
                     ],
-                    [
-                        'label' => __('Submit Property'), 
-                        'route' => 'dashboard.units.create',
-                        'active' => request()->routeIs('dashboard.units.create'),
-                        'can' => 'unit_access',
-                    ],
+                    // [
+                    //     'label' => __('Submit Property'), 
+                    //     'route' => 'dashboard.units.create',
+                    //     'active' => request()->routeIs('dashboard.units.create'),
+                    //     'can' => 'unit_access',
+                    // ],
                     [
                         'label' => __('Properties'), 
                         'route' => 'dashboard.units.index',
