@@ -76,11 +76,16 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-30">
-                        <x-inputs.text inputName="land_size" inputId="land_size" inputLabel="{{ __('Plot Size') }}" inputValue="{{ old('land_size', $unit->land_size ?? '') }}" type="number" />
+                        <x-inputs.select inputName="property_ownership" inputId="property_ownership" inputLabel="{{ __('Property Ownership') }}" error="{{ $errors->has('property_ownership') ? $errors->first('property_ownership') : '' }}" :inputData="$unit->propertyOwnerships" showButtons="false" inputValue="{{ old('property_ownership', $unit->property_ownership ?? '') }}" />
                     </div>
                 </div>
+                {{-- <div class="col-lg-6">
+                    <div class="mb-30">
+                        <x-inputs.text inputName="land_size" inputId="land_size" inputLabel="{{ __('Plot Size') }}" inputValue="{{ old('land_size', $unit->land_size ?? '') }}" type="number" />
+                    </div>
+                </div> --}}
             </div>
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-30">
                         <x-inputs.text inputName="permit_no" inputId="permit_no" inputLabel="{{ __('Permit Number') }}" inputValue="{{ old('permit_no', $unit->permit_no ?? '') }}" />                
@@ -91,7 +96,7 @@
                         <x-inputs.select inputName="property_ownership" inputId="property_ownership" inputLabel="{{ __('Property Ownership') }}" error="{{ $errors->has('property_ownership') ? $errors->first('property_ownership') : '' }}" :inputData="$unit->propertyOwnerships" showButtons="false" inputValue="{{ old('property_ownership', $unit->property_ownership ?? '') }}" />
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="mb-30">
                 <div class="d-flex align-items-end">
                     <x-inputs.select inputName="project_id" inputId="project_id" inputLabel="{{ __('Project') }}" error="{{ $errors->has('project_id') ? $errors->first('project_id') : '' }}" :inputData="$projects" showButtons="false" inputValue="{{ old('project_id', $unit->project_id ?? '') }}" inputClass="select2" class="w-100" />
@@ -101,17 +106,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                {{-- <div class="col-lg-4">
                     <x-inputs.select inputName="country" inputLabel="{{ __('Country')}}" inputId="country" placeholder="{{ __('Select Country') }}" :inputValue="old('country') ?? $unit->country" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" />
                 </div>
                 <div class="col-lg-4">
                     <x-inputs.select inputName="cities[]" inputId="cities" inputLabel="{{ __('Cities') }}" placeholder="{{ __('Select Cities') }}" :inputValue="old('cities',  $unit->cities ?? '')" :inputData="$cities" inputClass="select2 mb-30" inputType="multiple"/>
-                </div>
-                <div class="col-lg-4">
+                </div> --}}
+                <div >
                     <x-inputs.text inputName="address" inputId="address" inputLabel="{{ __('Address') }}" inputValue="{{ old('address', $unit->community ?? '') }}" class="mb-30" type="text"/>
                 </div>
             </div>
-            <x-inputs.text inputName="location" inputId="location" inputLabel="{{ __('Location') }}" inputValue="{{ old('location', $unit->location ?? '') }}" class="mb-30" type="text"/>
+            <div class="row">
+                <label for="location">Location</label>
+                <input type="hidden" name="location" id="location" value="{{ old('location', $unit->location ?? '35.52052844635452;35.80705384863964') }}" class="mb-30">        
+                <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
+            
+            </div>
+            {{-- <x-inputs.text inputName="location" inputId="location" inputLabel="{{ __('Location') }}" inputValue="{{ old('location', $unit->location ?? '') }}" class="mb-30" type="text"/> --}}
             {{-- <div class="mb-30">
                 <x-inputs.select inputName="installments[]" inputLabel="{{ __('Installments') }}" inputId="installments" placeholder="{{ __('Select Installments') }}" inputClass="select2" :inputValue="old('installments',  $unit->installments?? [])" :inputData="$installments" inputType="multiple"/>
             </div> --}}
@@ -180,9 +191,6 @@
         <!-- step three -->
         <div class="step">
             <h4 class="text-center mb-40">{{ __('Property Media') }}</h4>
-            <div class="mb-30">
-                <x-inputs.text inputName="yt_video_url" inputId="yt_video_url" inputLabel="{{ __('YT Video URL') }}" inputValue="{{ old('yt_video_url', $unit->yt_video_url ?? '') }}" inputHint="" />
-            </div>
             <div class="mb-30">
                 <ul class="row row-cols-xl-6 row-cols-md-3 row-cols-2 media-upload">
                     @if (isset($unit->thumbImage))                        

@@ -1,4 +1,5 @@
 @extends('fullwidth.layouts.app')
+@include('website.partials.website-map-integration' , ['project' => $unit])
 @section('content')
     <div class="text-end mb-30">
         <a class="btn btn-secondary" target="_blank" href="{{ route('propertyShow', $unit->slug) }}">
@@ -35,6 +36,21 @@
                         <div class="col table-responsive">
                             <table class="table table-borderless">
                                 <tbody>
+                                    <tr>
+                                        <td>
+                                            <b>{{ __('Address') }}</b>
+                                        </td>
+                                        <td>
+                                            {{ $unit->address ?? '' }}
+                                        </td>
+                                        
+                                        <td>
+                                            <b>{{ __('Project') }}</b>
+                                        </td>
+                                        <td colspan="5">
+                                            {{ $unit->project->name ?? '' }}
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td>
                                             <b>{{ __('Id') }}</b>
@@ -112,20 +128,9 @@
                                         <td>
                                             {{ $unit->property_id }}
                                         </td>
-                                        <td>
-                                            <b>{{ __('Plot Size') }}</b>
-                                        </td>
-                                        <td colspan="3">
-                                            {{ $unit->land_size }}
-                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <b>{{ __('Permit Number') }}</b>
-                                        </td>
-                                        <td>
-                                            {{ $unit->permit_no }}
-                                        </td>
+                                      
                                         <td>
                                             <b>{{ __('Property Ownership') }}</b>
                                         </td>
@@ -133,45 +138,21 @@
                                             {{ $unit->propertyOwnershipText }}
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <b>{{ __('Project') }}</b>
-                                        </td>
-                                        <td colspan="5">
-                                            {{ $unit->project->name ?? '' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>{{ __('Address') }}</b>
-                                        </td>
-                                        <td>
-                                            {{ $unit->address }}
-                                        </td>
-                                        <tr>
-                                            <th>
-                                                {{ __('Cities') }}</h5>
-                                            </th>
-                                            <td>
-                                                @foreach($unit->cities as $_city)
-                                                    <span class="badge bg-info fs-6 m-1">{{$_city->name}}</span>
-                                                @endforeach
-                                            </td>
-                                        </tr>
-                                        <td>
-                                            <b>{{ __('Country') }}</b>
-                                        </td>
-                                        <td>
-                                            {{ $unit->country ? $countries[$unit->country] : '' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <b>{{ __('Location') }}</b>
-                                        </td>
-                                        <td colspan="5">
-                                            {{ $unit->location }}
-                                        </td>
+                                
+                                    <tr>   
+                                   
+                                    @if ($unit->location ?? false)
+                                        <input type="hidden" name="location" id="location" value="{{ $unit->location ?? '35.52052844635452;35.80705384863964' }}">
+                                        <div class="property-overview border rounded bg-white p-30 mb-30">
+                                            <div class="row row-cols-1">
+                                                <div class="col">
+                                                    <h5 class="mb-3">{{__('Location')}}</h5>
+                                                    <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                   
                                     </tr>
                                     <tr>
                                         <td>
@@ -201,41 +182,6 @@
                                             @endforeach
                                         </td>
                                     </tr>
-                                    {{-- <tr>
-                                        <td colspan="6"><b>{{ __('Payment Plans') }}</b>:</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="65">
-                                            @if ($unit->installments->count())
-                                                <table class="table table-bordered table-sm">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>{{ __('Type') }}</td>
-                                                            <td>{{ __('Milestone') }}</td>
-                                                            <td>{{ __('Payment') }}</td>
-                                                        </tr>
-                                                    </thead>
-                                                    @forelse($unit->installments as $_installment)
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>{{ $_installment->type }}</td>
-                                                                <td>{{ $_installment->milestone }}</td>
-                                                                <td>{{ $_installment->payment }}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    @empty
-                                                        <tbody>
-                                                            <tr>
-                                                                <td colspan="3">{{ __('No Installment') }}</td>
-                                                            </tr> 
-                                                        </tbody>
-                                                    @endforelse
-                                                </table>
-                                            @else         
-                                                {{ __('No Installment') }}
-                                            @endif
-                                        </td>
-                                    </tr> --}}
                                     <tr>
                                         <td colspan="6"><b>{{ __('Amenities') }}</b>:</td>
                                     </tr>

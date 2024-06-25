@@ -1,76 +1,10 @@
 @extends('website.layout.app-blog')
 @section('pageTitle', __($project->name) . ' | ' . __('Projects') . ' | ' . config('panel.website_title'))
 @section('pageDescription', __($project->name) . ', ' . __('Projects') . ' | ' . config('panel.website_title'))
-@include('website.partials.map-integration')
+@include('website.partials.website-map-integration')
 @section('content')
     @include('website.layout.title-banner-light')
 <!--============== Property Slider Start ==============-->
-
-{{-- <div class="row">
-    <div class="col-md-12 ls-direction-fix">
-        <div class="ls-fullscreen-wrapper">
-            <div id="single-project" style="width: 1156px; height: 578px; margin: 0px auto 30px; position: relative; visibility: visible;" data-layerslider-uid="LSs3x60y6eu" class="ls-photogallery ls-container ls-responsive ls-device-is-desktop" data-current-slide="1">
-                <div class="ls-inner" style="background: none transparent;">
-                    <div class="ls-layers">
-                        <div class="ls-background-videos"></div>
-                        <div class="ls-slide-backgrounds">
-                            @if ($project->coverImage)
-                                <div class="ls-wrapper ls-bg-outer" data-slide-index="1" style="z-index: 1; width: 1156px; height: 578px;">
-                                    <div class="ls-wrapper ls-bg-wrap" style="background-color: transparent; display: block; opacity: 1; transform: translate3d(0px, 0px, 0px) scale(1.11234, 1.11234);">
-                                        <img src="{{$project->coverImage ?? ''}}" class="ls-bg" alt="{{ $project->name }} image" style="margin: 0px; z-index: auto; width: 1156px; height: 771px; padding: 0px; border-width: 0px; border-radius: 0px; x: 0px; y: -96.5px; transform: translateX(0px) translateY(-96.5px); filter: none;" data-ls-slidein="1" data-ls-slideout="1" data-ls-hidden="">
-                                    </div>
-                                </div>
-                            @endif
-                            @foreach ($project->projectPhotos as $_photo)
-                                <div class="ls-wrapper ls-bg-outer" data-slide-index="1" style="z-index: 1; width: 1156px; height: 578px;">
-                                    <div class="ls-wrapper ls-bg-wrap" style="background-color: transparent; display: block; opacity: 1; transform: translate3d(0px, 0px, 0px) scale(1.11234, 1.11234);">
-                                        <img src="{{$_photo->getUrl()}}" class="ls-bg" alt="{{ $project->name }} image {{ $loop->iteration }}" style="margin: 0px; z-index: auto; width: 1156px; height: 771px; padding: 0px; border-width: 0px; border-radius: 0px; x: 0px; y: -96.5px; transform: translateX(0px) translateY(-96.5px); filter: none;" data-ls-slidein="{{ $loop->iteration + 1 }}" data-ls-slideout="{{ $loop->iteration + 1 }}" data-ls-hidden="">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                <div class="ls-gui-element ls-loading-container" style="display: none;">
-                    <div class="ls-loading-indicator"></div>
-                </div>
-                <div class="ls-gui-element ls-shadow" data-ls-parallax="disabled"></div>
-                <a class="ls-gui-element ls-nav-prev" aria-label="jump to the previous slide" href="#" style="visibility: visible; display: none;"></a>
-                <a class="ls-gui-element ls-nav-next" aria-label="jump to the next slide" href="#" style="visibility: visible; display: none;"></a>
-                <div class="ls-gui-element ls-bottom-nav-wrapper ls-above-thumbnails" style="visibility: visible; display: none;"></div>
-                <div class="ls-gui-element ls-thumbnail-wrapper" style="visibility: visible; display: none;">
-                    <div class="ls-thumbnail" style="width: 300px;">
-                        <div class="ls-thumbnail-inner">
-                            <div class="ls-thumbnail-slide-container">
-                                <div class="ls-thumbnail-slide" style="height: 67px; margin-left: 0px;">
-                                    @if ($project->coverImage)
-                                        <a href="#" class="ls-thumb-1" aria-label="jump to slide 1" style="width: 96px; height: 67px;">
-                                            <img src="{{ $project->coverImage }}" class="ls-thumb-active" alt="{{ $project->name }} thumbnail image" style="opacity: 0.35;">
-                                        </a>
-                                    @endif
-                                    @foreach ($project->projectPhotos as $_photo)
-                                        <a href="#" class="ls-thumb-2" aria-label="jump to slide {{ $loop->iteration + 1 }}" style="width: 96px; height: 67px;">
-                                        <img src="{{ $_photo->getUrl() }}" alt="{{ $project->name }} thumbnail image" style="opacity: 1;" class="">
-                                    </a>
-                                    @endforeach
-                                    
-                                    <a href="#" class="ls-thumb-3" aria-label="jump to slide 3" style="width: 96px; height: 67px; margin: 0px;">
-                                        <img src="/assets/images/slider/8.png" style="opacity: 1;" class="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="ls-gui-element ls-media-unmute" aria-label="Unmute">
-                    <div class="ls-media-unmute-bg"></div>
-                    <div class="ls-icon-muted"></div>
-                    <div class="ls-icon-unmuted"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
     <div class="full-row p-0 mb-30">
         <div class="container">
             <div class="row">
@@ -526,6 +460,5 @@ $(document).ready(function() {
         var marker = L.marker([coordinates[0], coordinates[1]]).addTo(map)
         .bindPopup('{{$project->name}}')
         .openPopup();
-        map.on('click', onMapClick);
     </script>
 @endpush

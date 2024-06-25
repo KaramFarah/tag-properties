@@ -9,7 +9,7 @@
     });
     </script>
 @endsection
-@include('website.partials.map-integration')
+@include('website.partials.Dashboard-map-integration')
 <div class="row">
     <div class="col mb-30">
         <div class="border rounded bg-white p-30">

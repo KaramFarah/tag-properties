@@ -66,12 +66,18 @@
                                 <a name="property-type" class="listing-ctg"><i class="{{ $unit->property_type_icon }}"></i><span>{{$unit->propertyTypeText}}</span></a>
                             </div>
                             <h4 class="listing-title">{{$unit->name}}</h4>
-                            <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i> {{$unit->fullLocation ?? ($unit->project->fullLocation ?? 'No Location')}}</span>
-                            <a name="recommendations" class="d-block text-light hover-text-primary font-small mb-2">{{$unit->recommendedCount ? '( ' . $unit->recommendedCount . ' People Recommended )' : ''}}</a>
                         </div>
-                        <div class="col-auto ms-auto xs-m-0 text-end xs-text-start pb-4">
+                        <div class="col ms-auto xs-m-0 text-end xs-text-start pb-4">
                             <span class="listing-price">{{ config('panel.currency') }} {{$unit->price}} <small>( {{ $unit->propertyPurposeText }} )</small></span>
                             <span class="text-white font-mini px-2 rounded product-status ms-auto xs-m-0 py-1 bg-primary"><i class="fas fa-check"></i> {{$unit->propertyStatusText}}</span>
+                        </div>
+                        <div class="col-12">
+                            @if($unit->location)
+                                <div id="map" style="height: 300px; width: 100%" class="mb-30"></div>
+                                <input type="hidden" name="location" id="location" value="{{ old('location', $unit->location ?? '35.52052844635452;35.80705384863964') }}" class="mb-30">   
+                            @endif       
+                            {{-- <span class="listing-location"> {{$unit->fullLocation ?? ($unit->project->fullLocation ?? 'No Location')}}</span> --}}
+                            <a name="recommendations" class="d-block text-light hover-text-primary font-small mb-2">{{$unit->recommendedCount ? '( ' . $unit->recommendedCount . ' People Recommended )' : ''}}</a>
                         </div>
                         <div class="col-12">
                             @if ($unit->installments->count())
@@ -86,9 +92,6 @@
                             @endif
 
                             <ul class="quick-meta mt-4">
-                                {{-- wwww --}}
-                                {{-- {{dd($shareLink['facebook'])}} --}}
-                                {{-- <li class="bg-light"><a href="#" title="Add to compare" class="text-dark"><i class="flaticon-transfer flat-mini"></i></a></li> --}}
                                 @if (auth()->user())
                                     <li onclick="toggleIconClass(this.querySelector('i:first-child'))" class="bg-light">
                                         <a href="#" link="{{route('api.new-favorite' , ['unit' => $unit])}}" title="Add wishlist" class="text-dark">
@@ -309,19 +312,19 @@
         popupTransitionOut: 'scaletobottom',
         skinsPath: 'assets/skins/'
     });
+    </script>
 
-        // var initialplace = document.getElementById('location').value;
-        // let coordinates = initialplace.split(';')
-        // var map = L.map('map').setView([coordinates[0], coordinates[1]], 13);
+    <script>
+        var initialplace = document.getElementById('location').value;
+        let coordinates = initialplace.split(';')
+        var map = L.map('map').setView([coordinates[0], coordinates[1]], 13);
 
-        // L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        //     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        // }).addTo(map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
 
-        // var marker = L.marker([coordinates[0], coordinates[1]]).addTo(map)
-        // .bindPopup('{{$unit->name}}')
-        // .openPopup();
-        // map.on('click', onMapClick);
-
+        var marker = L.marker([coordinates[0], coordinates[1]]).addTo(map)
+        .bindPopup('{{$unit->name ?? ''}}')
+        .openPopup();
     </script>
 @endpush

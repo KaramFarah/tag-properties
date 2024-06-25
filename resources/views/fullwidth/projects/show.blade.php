@@ -1,5 +1,5 @@
 @extends('fullwidth.layouts.app')
-@include('website.partials.map-integration')
+@include('website.partials.website-map-integration')
 @section('content')
     <div class="text-end mb-30">
         <a class="btn btn-secondary" target="_blank" href="{{ route('projects.show', $project->slug) }}">

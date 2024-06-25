@@ -13,8 +13,22 @@
         }).addTo(map);
 
         var marker = L.marker([coordinates[0], coordinates[1]]).addTo(map)
-        .bindPopup('{{$project->name  ?? 'Your Project'}}')
+        .bindPopup('{{$project->name ?? 'Welcome To TAG Properties. You Can Choose Your Project Location Here.'}}')
         .openPopup();
+
+        // var popup = L.popup();
+
+        function onMapClick(e) {
+            marker
+                .setLatLng(e.latlng)
+                // .bindPopup('New Location Was Selected!')
+                // .openPopup();
+
+            let result = `${e.latlng.lat};${e.latlng.lng}`;
+            document.getElementById('location').value = result;
+            console.log(result);
+        }
+
         map.on('click', onMapClick);
     </script>
 @endpush
