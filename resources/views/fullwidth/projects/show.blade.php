@@ -53,44 +53,6 @@
                                                 {{ $project->description }}
                                             </td>
                                         </tr>
-                                    
-                                        {{-- <tr>
-                                            <td colspan="6">
-                                                <b>{{ __('Installments') }}</b>:
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="65">
-                                                @if ($project->installments->count())
-                                                    <table class="table table-bordered table-sm">
-                                                        <thead>
-                                                            <tr>
-                                                                <td>{{ __('Type') }}</td>
-                                                                <td>{{ __('Milestone') }}</td>
-                                                                <td>{{ __('Payment') }}</td>
-                                                            </tr>
-                                                        </thead>
-                                                        @forelse($project->installments as $_installment)
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>{{ $_installment->type }}</td>
-                                                                    <td>{{ $_installment->milestone }}</td>
-                                                                    <td>{{ $_installment->payment }}</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        @empty
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td colspan="3">{{ __('No Installment') }}</td>
-                                                                </tr> 
-                                                            </tbody>
-                                                        @endforelse
-                                                    </table>
-                                                @else         
-                                                    {{ __('No Installment') }}
-                                                @endif
-                                            </td>
-                                        </tr> --}}
                                         <tr>
                                             <th>
                                                 {{ __('Developer') }}</h5>

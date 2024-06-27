@@ -47,15 +47,6 @@
                             <span class="text-white font-mini px-2 rounded product-status ms-auto xs-m-0 py-1 bg-primary"><i class="fas fa-check"></i> {{$unit->propertyStatusText}}</span>
                         </div>
                         <div class="col-12">
-                            @if ($unit->installments->count())
-                                @foreach ($unit->installments as $installment)
-                                    <div class="product-offers mt-2">
-                                        <ul class="product-offers-list">
-                                            <li class="product-offer-item"> <strong>{{$installment->type . ' ' ?? ''}}</strong>{{$installment->payment . ' ' ?? ''}}</li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            @endif
 
                             <hr>
                             <div class="mt-2">

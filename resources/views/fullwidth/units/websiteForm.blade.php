@@ -106,12 +106,6 @@
                 </div>
             </div>
             <div class="row">
-                {{-- <div class="col-lg-4">
-                    <x-inputs.select inputName="country" inputLabel="{{ __('Country')}}" inputId="country" placeholder="{{ __('Select Country') }}" :inputValue="old('country') ?? $unit->country" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" />
-                </div>
-                <div class="col-lg-4">
-                    <x-inputs.select inputName="cities[]" inputId="cities" inputLabel="{{ __('Cities') }}" placeholder="{{ __('Select Cities') }}" :inputValue="old('cities',  $unit->cities ?? '')" :inputData="$cities" inputClass="select2 mb-30" inputType="multiple"/>
-                </div> --}}
                 <div >
                     <x-inputs.text inputName="address" inputId="address" inputLabel="{{ __('Address') }}" inputValue="{{ old('address', $unit->community ?? '') }}" class="mb-30" type="text"/>
                 </div>
@@ -123,9 +117,6 @@
             
             </div>
             {{-- <x-inputs.text inputName="location" inputId="location" inputLabel="{{ __('Location') }}" inputValue="{{ old('location', $unit->location ?? '') }}" class="mb-30" type="text"/> --}}
-            {{-- <div class="mb-30">
-                <x-inputs.select inputName="installments[]" inputLabel="{{ __('Installments') }}" inputId="installments" placeholder="{{ __('Select Installments') }}" inputClass="select2" :inputValue="old('installments',  $unit->installments?? [])" :inputData="$installments" inputType="multiple"/>
-            </div> --}}
             @if (auth()->user()->isAgent || auth()->user()->isAdmin)
                 <div class="row">
                     <div class="col-lg-6">

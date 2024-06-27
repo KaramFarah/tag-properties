@@ -80,16 +80,6 @@
                             <a name="recommendations" class="d-block text-light hover-text-primary font-small mb-2">{{$unit->recommendedCount ? '( ' . $unit->recommendedCount . ' People Recommended )' : ''}}</a>
                         </div>
                         <div class="col-12">
-                            @if ($unit->installments->count())
-                            {{-- {{dd($unit->installments[0]->type)}} --}}
-                                @foreach ($unit->installments as $installment)
-                                    <div class="product-offers mt-2">
-                                        <ul class="product-offers-list">
-                                            <li class="product-offer-item"> <strong>{{$installment->type . ' ' ?? ''}}</strong>{{$installment->payment . ' ' ?? ''}}</li>
-                                        </ul>
-                                    </div>
-                                @endforeach
-                            @endif
 
                             <ul class="quick-meta mt-4">
                                 @if (auth()->user())
@@ -100,7 +90,6 @@
                                     </li>
                                 @endif
                                 <li class="bg-light"><a href="{{route('print' , ['unit' => $unit])}}" title="Print Data" target="blank" class="text-dark"><i class="flaticon-printer flat-mini"></i></a></li> 
-                                {{-- karam --}}
                                 <li class="bg-light"><a href="{{$shareLink['facebook']}}" title="Media share" class="text-dark" ><i class="bi bi-facebook flat-mini"></i></a></li>
                                 <li class="bg-light"><a href="{{$shareLink['twitter']}}" title="Media share" class="text-dark" ><i class="bi bi-twitter-x flat-mini"></i></a></li>
                                 <li class="bg-light"><a href="{{$shareLink['telegram']}}" title="Media share" class="text-dark" ><i class="bi bi-telegram flat-mini"></i></a></li>

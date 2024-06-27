@@ -146,8 +146,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'namespace' => 'Das
     Route::resource('projects', 'ProjectsController');
 
     // Installments
-    Route::delete('installments/destroy', 'InstallmentsController@massDestroy')->name('installments.massDestroy');
-    Route::resource('installments', 'InstallmentsController');
+    // Route::delete('installments/destroy', 'InstallmentsController@massDestroy')->name('installments.massDestroy');
+    // Route::resource('installments', 'InstallmentsController');
 
     // Media
     // Route::delete('media/destroy', 'MediaController@massDestroy')->name('media.massDestroy');

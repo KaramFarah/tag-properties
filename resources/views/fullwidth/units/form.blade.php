@@ -97,11 +97,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col mb-30">
-                    <x-inputs.select inputName="installments[]" inputLabel="{{ __('Installments') }}" inputId="installments" placeholder="{{ __('Select Installments') }}" inputClass="select2" :inputValue="old('installments',  $unit->installments?? [])" :inputData="$installments" inputType="multiple"/>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col">
                     <h6 class="mb-30">{{ __('Property Features') }}</h6>
                     <ul class="row row-cols-lg-3 row-cols-1 custom-check-box mb-30">

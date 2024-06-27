@@ -69,14 +69,6 @@
                 <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
             
             </div>
-            {{-- <div class="row mb-30">
-                <div class="d-flex align-items-center">
-                    <x-inputs.select inputName="installments[]" inputLabel="{{ __('Payment Plans') }}" inputId="installments" placeholder="{{ __('Select Installments') }}" inputClass="select2" :inputValue="old('installments',  $project->installments?? [])" :inputData="$installments" inputType="multiple" class="w-100" />
-                    @can('installment_create')
-                        <button class="btn btn-light ms-10 mx-3" id="openModelAddNewProject" type="button" data-bs-toggle="modal" data-bs-target="#addPaymentModal"><i class="fa fa-plus"></i></button>                            
-                    @endcan 
-                </div>
-            </div> --}}
             <div class="row">
                 <div class="col-lg-12">
                     <x-inputs.text inputName="project_type" inputId="project_type" inputLabel="{{ __('Project Type') }}" inputRequired="" inputValue="{{ old('project_type', $project->project_type ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>

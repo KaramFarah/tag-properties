@@ -51,13 +51,6 @@ class DashboardHelper
                         'active' => request()->routeIs('dashboard.units.*'),
                         'can' => 'unit_access',
                     ],
-              
-                    [
-                        'label' => __('Financial Notes'), 
-                        'route' => 'dashboard.installments.index',
-                        'active' => request()->routeIs('dashboard.installments.*'),
-                        'can' => 'installment_access',
-                    ],
                 ],
             ],
             [
