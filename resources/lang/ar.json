@@ -1,0 +1,16 @@
+{
+    "Number of years" : "عدد السنوات",
+    "Age" : "العمر",
+    "Transportation" : "النقل",
+    "Close" : "إغلاق",
+    "Details" : "التفاصيل",
+    "Employee Details" : "تفاصيل الموظف",
+    "Days" : "الأيام",
+    "Number of Days" : "عدد الأيام بين تاريخ بداية ونهاية الإجازة",
+    "No Records": "لا يوجد سجلات",
+    "Holidays": "الإجازات",
+    "Decisions": "القرارات",
+    "Available Holidays": "الإجازات المسموحة",
+    "Available Admin Holidays this year": "الإجازات الإدارية المتاحة هذا العام",
+    "Day": "يوم"
+}
