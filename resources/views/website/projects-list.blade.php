@@ -92,6 +92,7 @@
                                                 <div class="cata position-absolute">
                                                     <span class="sale bg-primary text-white">{{$project->statusText}}</span></div>
                                                 <div class="owl-carousel single-carusel dot-disable nav-between-in">
+                                                    
                                                     @foreach ($project->allPhotos as $photo)
                                                         <div class="item">
                                                             <a href="{{route('projects.show' , ['project' => $project])}}"><img src="{{$photo->getUrl('website')}}" alt="{{$project->name}} cover image"></a>

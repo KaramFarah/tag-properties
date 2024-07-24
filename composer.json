@@ -17,7 +17,7 @@
         "livewire/livewire": "^3.0",
         "outhebox/blade-flags": "^1.2",
         "sadiqsalau/laravel-otp": "^1.0",
-        "spatie/laravel-medialibrary": "^10.0.0",
+        "spatie/laravel-medialibrary": "^10.15",
         "tinymce/tinymce": "^6.8",
         "twbs/bootstrap-icons": "^1.10"
     },

@@ -1,4 +1,3 @@
-{{-- @extends('website.layout.app-blog') --}}
 @extends('website.layout.app')
 @section('content')
     <div class="full-row p-0 overflow-hidden">
@@ -300,7 +299,7 @@
         <div class="container">
             <div class="row">
                 <div class="col position-relative">
-                    <span class="box-tab-line h6 text-primary bg-white x-center px-2">{{ __('Visionary Real Estate') }}</span>
+                    <span class="sm-d-none box-tab-line h6 text-primary bg-white x-center px-2">{{ __('Visionary Real Estate') }}</span>
                     <h2 class="box-title text-secondary text-center mx-auto mb-4 font-400">{{ __('DEVELOPERS') }}</h2>
                     <span class="sub-title text-secondary text-center mx-auto higlight-font mb-5 w-50 w-md-100">{{ __('We collaborate with top-tier developers, shaping tomorrow\'s landscapes with innovation, quality, and sustainability. Explore our pioneering projects and partners.') }}</span>
                 </div>
@@ -441,6 +440,20 @@
                     navbar.classList.add('nav-white');
                 }
             });
+            function toggleNavbarColor() {
+                const navbar = document.getElementById('main-navbar');
+                if (window.innerWidth <= 991.98) { // Check for small screen size
+                    navbar.classList.remove('nav-white');
+                    navbar.classList.add('nav-secondary');
+                } else {
+                    navbar.classList.remove('nav-secondary');
+                    navbar.classList.add('nav-white');
+                }
+            }
+
+            // Call the function on page load and window resize
+            toggleNavbarColor();
+            window.addEventListener('resize', toggleNavbarColor);
         </script>
     @endpush
 @endsection

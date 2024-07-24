@@ -1,3 +1,4 @@
+
 @extends('website.layout.app-blog')
 @section('pageTitle', __($project->name) . ' | ' . __('Projects') . ' | ' . config('panel.website_title'))
 @section('pageDescription', __($project->name) . ', ' . __('Projects') . ' | ' . config('panel.website_title'))
