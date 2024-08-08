@@ -22,27 +22,41 @@ class LeadsController extends BaseController
      */
     public function index()
     {
+        // dd(request()->priorityFilter);
         abort_if(Gate::denies('lead_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $query = Contact::orderBy('name')->orderBy('priority');
         $query->where('is_lead' , "yes");
+
+        $priorityFilter = isset(request()->priorityFilter) ? request()->priorityFilter : ''; 
+        $qulityFilter = isset(request()->qulityFilter) ? request()->qulityFilter : ''; 
+
         if ($search = request()->search)
-            $query->where('name' , 'like' , "%$search%")
-            ->orWhere('email' , 'like' , "$search%")
-            ->orWhere('mobile' , 'like' , "%$search%")
-            ->orWhere('country' , 'like' , "%$search%")
-            ->orWhere('city' , 'like' , "%$search%")
-            ->orWhere('preferred_languages' , 'like' , "%$search%")
-            //->orWhere('campaign_id' , 'like' , "%$search%")
-            ;
+            $query->where(function($q) use ($search) {
+                $q->where('name' , 'like' , "%$search%")
+                ->orWhere('email' , 'like' , "$search%")
+                ->orWhere('mobile' , 'like' , "%$search%");
+            });
+
+        $query->when(request()->priorityFilter , function($q){
+            $q->where('priority' , request()->priorityFilter);
+        });
+        $query->when(request()->qulityFilter , function($q){
+            $q->where('lead_quality' , request()->qulityFilter);
+        });
+
         if(auth()->user()->isAgent){
             $items = $query
             ->whereRelation('agents', 'id', auth()->user()->id)
             ->paginate(100)->appends([
-                'search' => $search
+                'search' => $search,
+                'priorityFilter' => $priorityFilter,
+                'qulityFilter' => $qulityFilter
             ]);
         }else{
             $items = $query->paginate(100)->appends([
                 'search' => $search,
+                'priorityFilter' => $priorityFilter,
+                'qulityFilter' => $qulityFilter
             ]);
         }
 
@@ -50,7 +64,7 @@ class LeadsController extends BaseController
         $breadcrumbs[] = ['label' => __('Dashboard'), 'url' => route('dashboard.home')];
         $breadcrumbs[] = ['label' => $local_title];
 
-        return view('fullwidth.leads.index', compact('search','local_title', 'breadcrumbs', 'items'));
+        return view('fullwidth.leads.index', compact( 'qulityFilter', 'priorityFilter', 'search','local_title', 'breadcrumbs', 'items'));
     }
 
     public function create()

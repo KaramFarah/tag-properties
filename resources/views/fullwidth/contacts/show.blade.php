@@ -6,11 +6,6 @@
             <i class="fa-brands fa-whatsapp"></i> {{ __('Whatsapp') }}
         </a>
         @endif
-        @if($contact->email)
-            <a class="btn btn-info rounded-pill mr-10 mt-10" href="mailto:{{$contact->email}}&subject=Tag Properties Contact" title="{{ __('Send Email') }}">
-                <i class="fa-regular fa-envelope"></i> {{ __('Send Email') }}
-            </a>
-        @endif
         @can('call_create')
             <a class="btn btn-success rounded-pill mr-10 mt-10" href="{{route('dashboard.actions.add' , $contact->id)}}" title="{{ __('Add Action Registery') }}">
                 <i class="fa-regular fa-calendar-plus"></i> {{ __('Add Action') }}
@@ -115,16 +110,6 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ __('Cities') }}</h5>
-                                        </th>
-                                        <td>
-                                            @foreach($contact->cities as $_city)
-                                                <span class="badge bg-info fs-6 m-1">{{$_city->name}}</span>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
                                             {{ __('Country') }}</h5>
                                         </th>
                                         <td>
@@ -218,7 +203,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ __('Passport') }}</h5>
+                                            {{ __('National ID') }}</h5>
                                         </th>
                                         <td>
                                             {{ $contact->passport ?? '' }}
@@ -226,15 +211,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ __('Passport Expiry') }}</h5>
-                                        </th>
-                                        <td>
-                                            {{ $contact->passport_expiry ?? '' }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ __('Passport Photocopy') }}</h5>
+                                            {{ __('National ID Photocopy') }}</h5>
                                         </th>
                                         <td>
                                             @forelse($contact->getMedia('passport-photos') as $_media)

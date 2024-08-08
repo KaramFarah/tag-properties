@@ -66,11 +66,11 @@
     if (document.querySelector('.filter_price') !== null) {
         $(".filter_price").slider({
             from: 0,
-            to: 1000000,
+            to: 5000000,
             step: 1000,
             smooth: true,
             round: 0,
-            dimension: "AED",
+            dimension: "SYP",
             skin: "plastic"
         });
     }

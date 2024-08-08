@@ -53,6 +53,13 @@ class DashboardHelper
                 'can' => 'leads_access',
                 'icon' => 'flaticon-network flat-mini',
                 'items' => [
+                    
+                    [
+                        'label' => __('Agents'), 
+                        'route' => 'dashboard.agents.index',
+                        'active' => request()->routeIs('dashboard.agents.*'),
+                        'can' => 'agent_access',
+                    ],
                     [
                         'label' => __('Campaigns'), 
                         'route' => 'dashboard.campaigns.index',
@@ -77,12 +84,6 @@ class DashboardHelper
                         'active' => request()->routeIs('dashboard.actions.*'),
                         'can' => 'call_access',
                     ],
-                    [
-                        'label' => __('Agents'), 
-                        'route' => 'dashboard.agents.index',
-                        'active' => request()->routeIs('dashboard.agents.*'),
-                        'can' => 'agent_access',
-                    ]
                 ],
             ],
             [

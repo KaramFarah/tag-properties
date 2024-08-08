@@ -64,8 +64,6 @@ class DevelopersController extends BaseController
     public function store(DeveloperRequest $request)
     {
         $model = Developer::create($request->all());
-        $cities = $this->createCities($request->cities);
-        $model->cities()->sync($cities);
         if ($model){
             if ($request->hasFile('logo') && $request->file('logo')->isValid()){
                 $model->addMediaFromRequest('logo')->toMediaCollection('logos', 'media');
@@ -118,8 +116,6 @@ class DevelopersController extends BaseController
     public function update(DeveloperRequest $request, Developer $developer)
     {
         if ($developer->update($request->all())){
-            $cities = $this->createCities($request->cities);
-            $developer->cities()->sync($cities);
             if ($request->hasFile('logo') && $request->file('logo')->isValid()){
                 $_media = $developer->getMedia('logos');
                 foreach($_media as $_item) {

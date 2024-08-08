@@ -21,11 +21,11 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control" name="city" placeholder="City">
+                                                    <input type="text" class="form-control" name="city" placeholder="Address">
                                                     <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            {{-- <div class="col-12">
                                                 <div class="position-relative">
                                                     <button class="form-control price-toggle toggle-btn" data-target="#data-range-price">Price <i class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
                                                     <div id="data-range-price" class="price_range price-range-toggle w-100">
@@ -36,19 +36,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-6">
+                                            </div> --}}
+                                            {{-- <div class="col-6">
                                                 <input type="text" class="form-control" name="keyword" placeholder="Min Area">
                                             </div>
                                             <div class="col-6">
                                                 <input type="text" class="form-control" name="keyword" placeholder="Max Area">
-                                            </div>
+                                            </div> --}}
                                             <div class="col-12">
                                                 <button class="btn btn-primary w-100">Search</button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
+                                
                                 @include('website.partials.recent-projects')
                             </div>
                         </div>
@@ -76,8 +77,6 @@
                                                     {!! __('results') !!}
                                             </span>
                                             <form class="view-category" method="get">
-                                                {{-- <button title="Grid" class="grid-view current" value="grid" name="display" type="submit"><i class="flaticon-grid-1 flat-mini"></i></button> --}}
-                                                {{-- <button title="List" class="list-view" value="list" name="display" type="submit"><i class="flaticon-grid flat-mini"></i></button> --}}
                                             </form>
                                         </div>
                                     </div>
@@ -100,9 +99,6 @@
                                                     @endforeach
                                                 </div>
                                                 <ul class="position-absolute quick-meta">
-                                                    {{-- <li><a href="#" title="Add Compare"><i class="flaticon-transfer flat-mini"></i></a></li> --}}
-                                                    {{-- <li><a href="#" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li> --}}
-                                                    {{-- <li class="md-mx-none"><a class="quick-view" href="#quick-view" title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li> --}}
                                                 </ul>
                                             </div>
                                             <div class="property_text px-3">
@@ -111,17 +107,8 @@
                                                 </div>
                                                 <h5 class="listing-title"><a href="{{route('projects.show' , ['project' => $project])}}">{{$project->name}}</a></h5>
                                                 <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$project->fullLocation}} </span>
-                                                {{-- @auth
-                                                    <div class="agent">
-                                                        <ul class="d-flex justify-content-between">
-                                                            <li><span>Realtors</span><div class="text-dark">Albart Rone</div></li>
-                                                            <li><span>Status</span><div class="text-dark">For Sell</div></li>
-                                                            <li><span>Time</span><div class="text-dark">7/4/2021</div></li>
-                                                        </ul>
-                                                    </div>
-                                                @endauth --}}
                                                 <div class="entry-footer">
-                                                    <span class="listing-price">@if ($project->minPrice) {{config('panel.currency')}} {{$project->minPrice}}@endif</span>
+                                                    <span class="listing-price">@if ($project->minPrice) {{'Starts At: '}}{{config('panel.currency')}} {{$project->minPrice}}@endif</span>
                                                 </div>
                                             </div>
                                         </div>

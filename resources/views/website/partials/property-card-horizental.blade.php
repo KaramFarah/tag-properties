@@ -11,7 +11,9 @@
         </div>
         <a href="{{ route('propertyShow', ['unit' => $unit]) }}" class="listing-ctg text-white"><i class="{{ $unit->property_type_icon }}"></i><span>{{$unit->propertyTypeText}}</span></a>
         <ul class="position-absolute quick-meta">
-            <li><a href="{{ route('propertyShow', ['unit' => $unit]) }}" title="Add Favourite"><i class="flaticon-like-1 flat-mini"></i></a></li>
+            <li onclick="toggleIconClass(this.querySelector('i:first-child'))"><a href="#"
+                link="{{route('api.new-favorite' , ['unit' => $unit])}}"
+                title="Add Favourite"><i class="{{$unit->isFavourite ? 'fa fa-heart' : 'flaticon-like-1'}} flat-mini"></i></a></li>
         </ul>
     </div>
     <div class="property_text px-3">
@@ -19,7 +21,7 @@
             <span class="listing-price">{{config('panel.currency')}} {{$unit->price}}<small> ( {{$unit->propertyPurposeText}} )</small></span>
         </a>
         <h5 class="listing-title"><a href="{{ route('propertyShow', ['unit' => $unit]) }}">{{$unit->name}}</a></h5>
-        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->fullLocation ?? ($unit->project->fullLocation ?? 'No Location')}}</span>
+        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->address ?? ($unit->project->fullLocation ?? 'No Location')}}</span>
         <ul class="d-flex quantity font-fifteen">
             <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{$unit->bedrooms}}</li>
             <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{$unit->bathrooms}}</li>

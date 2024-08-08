@@ -26,9 +26,9 @@
         <li class="nav-item {{ request()->is('blogs*') ? 'active' : ''}}">
             <a class="nav-link" href="{{ route('blog.index') }}">{{__('Blogs')}}</a>
         </li>
-        <li class="nav-item {{ request()->routeIs('contact') ? 'active' : ''}}">
+        {{-- <li class="nav-item {{ request()->routeIs('contact') ? 'active' : ''}}">
             <a class="nav-link" href="{{ route('contact') }}">{{__('Contact')}}</a>
-        </li>
+        </li> --}}
     </ul>
     @isset($showUser)
         <ul class="navbar-nav sm-mx-none px-3">
@@ -42,7 +42,7 @@
                     <a class="nav-link dropdown-toggle" href="#"><i class="fas fa-user me-1"></i></a>
                     <ul class="dropdown-menu">
                         {{-- <li><a class="dropdown-item" href="#">Messages</a></li> --}}
-                        <li><a class="dropdown-item" href="#">{{__('Hi')}},  {{Auth()->user()->name}}</a></li>
+                        <li><a class="dropdown-item" href="{{route('profile.details' , ['user' => Auth()->user()->id])}}">{{__('Hi')}},  {{Auth()->user()->name}}</a></li>
                         <li><a class="dropdown-item" href="{{route('profile.details', ['user' => Auth()->user()->id])}}"><i class="flaticon-locked flat-mini pe-2"></i> {{ __('Profile') }}</a></li>
                         @if(Auth()->user()->isAdmiin)
                             <li><a class="dropdown-item" href="{{route('home', ['user' => Auth()->user()->id])}}"><i class="flaticon-locked flat-mini pe-2"></i> {{ __('Profile') }}</a></li>
@@ -53,5 +53,6 @@
             </li>
         </ul>
     @endisset
-    <a href="{{route('property-list')}}" class="btn btn-primary add-listing-btn">{{__('List Your Property')}}</a>
+    <a href="{{ route('contact') }}" class="btn btn-primary add-listing-btn">{{__('Contact')}}</a>
+    {{-- <a href="{{route('property-list')}}" class="btn btn-primary add-listing-btn">{{__('List Your Property')}}</a> --}}
 </div>

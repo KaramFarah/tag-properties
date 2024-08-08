@@ -10,11 +10,17 @@
                 <div class="col">
                     <ul class="nav-bar-top right list-color-white d-flex">
                         @if (Auth::guest())
+                            
+                        @else
+                            @if(auth()->user()->isAdmin || auth()->user()->isAgent)
+                                <li><a href="{{route('profile.details' , ['user' => Auth()->user()->id])}}">Dashboard</a></li>
+                            @endif
+                        @endif
+                        @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
                             <li><a href="{{route('profile.details' , ['user' => Auth()->user()->id])}}">Hi, {{Auth::user()->name}}</a></li>
                         @endif
-                        <li><a href="{{ route('faq') }}">FAQ</a></li>
                         <li>
                             <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <li>

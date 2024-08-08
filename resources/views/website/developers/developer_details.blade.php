@@ -48,7 +48,7 @@
                                                                     </a>
                                                                 </li>
                                                             @endif                    
-                                                            <li class="md-mx-none"><a class="quick-view vModal" href="#quick-view{{$unit->id}}"  title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
+                                                            {{-- <li class="md-mx-none"><a class="quick-view vModal" href="#quick-view{{$unit->id}}"  title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li> --}}
                                                         </ul>
                                                     </div>
                                                     <div class="property_text p-4">

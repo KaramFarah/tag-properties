@@ -8,8 +8,33 @@
                     @can('lead_create')
                         <a class="btn btn-success rounded-pill" href="{{ route('dashboard.leads.create') }}" data-value="" data-title="{{ __('Add Developer') }}"><i class="fa fa-plus"></i> {{ __('Add Lead') }}</a>
                     @endcan
+                    
 
-                    <x-search-bar searchInput="{{$search}}"></x-search-bar>
+                    <div class="col m-4">
+                        <form action="" method="GET">
+                            <div class="input-group">
+
+                                <select class="form-select col-2 me-3" name="qulityFilter" id="priorityFilter">
+                                    <option value="">-- Quality</option>
+                                    <option @selected($qulityFilter == 'good') value="good">Good</option>
+                                    <option @selected($qulityFilter == 'follow') value="follow">Follow</option>
+                                    <option @selected($qulityFilter == 'unqualified') value="unqualified">Unqualified</option>
+                                </select>
+                                <select class="form-select col-2 me-3" name="priorityFilter" id="priorityFilter">
+                                    <option value="">-- Priority</option>
+                                    <option @selected($priorityFilter == 'high') value="high">High</option>
+                                    <option @selected($priorityFilter == 'medium') value="medium">Meduim</option>
+                                    <option @selected($priorityFilter == 'low') value="low">Low</option>
+                                </select>
+
+                                <input type="text" class="w-50 form-control me-3 border" name="search" placeholder="{{ __('Search') }}" value="{{isset($search) ? $search : old('search') ?? ''}}">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-filter"></i> {{ __('Apply') }}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    {{-- <x-search-bar searchInput="{{$search}}"></x-search-bar> --}}
 
                     <div class="table-responsive">
                         <table class="table w-100 items-list bg-transparent">

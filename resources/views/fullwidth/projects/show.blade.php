@@ -75,60 +75,17 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                {{ __('Opening Date') }}</h5>
+                                                {{ __('Completion Date') }}</h5>
                                             </th>
                                             <td>
                                                 {{ $project->opening_date }}
                                             </td>
-                                        {{-- </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Cities') }}</h5>
-                                            </th>
-                                            <td>
-                                                @foreach($project->cities as $_city)
-                                                    <span class="badge bg-info fs-6 m-1">{{$_city->name}}</span>
-                                                @endforeach
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Emirate') }}</h5>
-                                            </th>
-                                            <td>
-                                                {{ $project->province }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Country') }}</h5>
-                                            </th>
-                                            <td>
-                                                {{ $countries[$project->country] ?? '' }}
-                                            </td>
-                                        </tr> --}}
                                         <tr>
                                             <th>
                                                 {{ __('Address') }}</h5>
                                             </th>
                                             <td>
-                                                {{ $project->fullLocation }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Location') }}</h5>
-                                            </th>
-                                            <td>
-                                                {{ $project->location }}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Project Type') }}</h5>
-                                            </th>
-                                            <td>
-                                                {{Str::ucfirst($project->project_type)}}
+                                                {{ $project->community }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -169,32 +126,8 @@
                                                 @endforelse
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Availability List') }}</h5>
-                                            </th>
-                                            <td>
-                                                @forelse($project->availabilityList as $_file)
-                                                    <p>
-                                                        <a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ $_file->name }} ({{ $_file->mime_type }})</a>
-                                                    </p>
-                                                @empty
-                                                    <span>{{ __('No Availability List File') }}</span>
-                                                @endforelse
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>
-                                                {{ __('Payment Plans') }}</h5>
-                                            </th>
-                                            <td>
-                                                @forelse($project->paymentPlan as $_file)
-                                                    <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ $_file->name }} ({{ $_file->mime_type }})</a></p>
-                                                @empty
-                                                    <span>{{ __('No Payment Plan File') }}</span>
-                                                @endforelse
-                                            </td>
-                                        </tr>
+                    
+
                                         <tr>
                                             <th>
                                                 {{ __('Brochure') }}</h5>

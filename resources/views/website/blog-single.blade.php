@@ -36,9 +36,13 @@
                     <div class="col-xl-8 order-xl-1 sm-mb-30">
                         <div class="single-post border summary bg-white p-30 mb-30">
                             <div class="single-post-title">
-                                <a href="{{route('blog.index' , ['tag' => $blog->tags->first()->slug])}}">
-                                    <span class="d-inline-block text-primary">{{$blog->tags->first()->name ?? ''}}</span>
-                                </a>
+                                @forelse ( $blog->tags as $tag )
+                                    <a href="{{route('blog.index' , ['tag' => $tag->slug])}}">
+                                        <span class="d-inline-block text-primary badge">{{($tag->name) ?? ''}}</span>
+                                    </a>
+                                @empty
+                                    
+                                @endforelse
                                 <h4 class="mb-3 text-secondary">{{$blog->title}}</h4>
                                 <p>{!!$blog->description!!}</p>
                                 <div class="post-meta list-color-general mb-4">
@@ -61,9 +65,13 @@
                             </div>
                             <div class="tagcloud">
                                 <h6 class="mb-3">Tags:</h6>
-                                <ul>
-                                    <li><a href="{{route('blog.index' , ['tag' => $blog->tags->last()])}}">{{$blog->tags->last()->name}}</a></li>
-                                </ul>
+                                @forelse ($blog->tags as $tag)
+                                    <ul>
+                                        <li><a href="{{route('blog.index' , ['tag' => $tag])}}">{{$tag->name}}</a></li>
+                                    </ul>
+                                @empty
+                                    
+                                @endforelse
                             </div>
                             <div class="share-post border-0 px-0 d-flex mt-5">
                                 <span class="py-10"><b>Share:</b></span>

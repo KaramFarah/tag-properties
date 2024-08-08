@@ -89,7 +89,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <b>{{ __('All Inclusive Price (AED)') }}</b>
+                                            <b>{{ __('All Inclusive Price ') . '( '. config('panel.currency') . ') '}}</b>
                                         </td>
                                         <td>
                                             {{ $unit->price }}

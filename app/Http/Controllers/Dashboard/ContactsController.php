@@ -31,31 +31,13 @@ class ContactsController extends BaseController
         $query->where('name' , 'like' , "%$search%")
               ->orWhere('email' , 'like' , "$search%")
               ->orWhere('mobile' , 'like' , "%$search%")
-              ->orWhere('country' , 'like' , "%$search%")
-              ->orWhere('city' , 'like' , "%$search%")
-              ->orWhere('preferred_languages' , 'like' , "%$search%")
-              ->orWhere('birthday' , 'like' , "%$search%")
-              ->orWhere('landline' , 'like' , "%$search%")
-              ->orWhere('address' , 'like' , "%$search%")
-              ->orWhere('occupation' , 'like' , "%$search%")
-              ->orWhere('company' , 'like' , "%$search%")
-              ->orWhere('passport' , 'like' , "%$search%")
-              ->orWhere('passport_expiry' , 'like' , "%$search%")
-              ->orWhere('financing' , 'like' , "%$search%")
-              ->orWhere('expected_purchase_time' , 'like' , "%$search%")
-            //   ->orWhere('campaign_id' , 'like' , "%$search%")
               ;
-              if(auth()->user()->isAgent){
+            if(auth()->user()->isAgent){
                 $items = $query
                 ->whereRelation('agents', 'id', auth()->user()->id)
                 ->paginate(100)->appends([
                     'search' => $search,
                 ]);
-                // ->where(agents->where('id' , 3))
-                // ->filter(function($value)
-                // { 
-                //     return ($this->getOwnerId($value) == auth()->user()->id);
-                // });
             }else{
                 $items = $query->paginate(100)->appends([
                     'search' => $search,

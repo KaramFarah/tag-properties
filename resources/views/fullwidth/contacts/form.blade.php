@@ -42,20 +42,9 @@ body {
                 <div class="col-lg">
                     <x-inputs.text inputName="address" inputId="address" inputLabel="{{ __('Address') }}" inputValue="{{ old('address', $contact->address ?? '') }}" />
                 </div>
-                <div class="col-lg">
-                    <x-inputs.select inputName="cities[]" inputId="cities" inputLabel="{{ __('Cities') }}" placeholder="{{ __('Select Cities') }}" :inputValue="old('cities',  $contact->cities ?? '')" :inputData="$cities" inputClass="select2 mb-30" inputType="multiple"/>
-                    {{-- <x-inputs.text inputName="city" inputId="city" inputLabel="{{ __('City') }}" inputValue="{{ old('city', $contact->city ?? '') }}" /> --}}
-                </div>
+               
                 <div class="col-lg">
                     @include('fullwidth.partials.countries', ['selected_country' => $contact->country])
-                </div>
-            </div>
-            <div class="row mb-30">
-                <div class="col-lg">
-                    <x-inputs.select inputName="language_tags[]" inputId="preferred_languages" inputLabel="{{ __('Preferred Languages') }}" placeholder="{{ __('Select Languages') }}" :inputValue="old('language_tags[]',  $langusages_array ??  $contact->tags)" :inputData="$languages" inputClass="select2" inputType="multiple" showButtons="false"/>
-                </div>
-                <div class="col-lg">                        
-                    <x-inputs.text inputName="birthday" inputId="birthday" inputLabel="{{ __('Birthday') }}" inputValue="{{ old('birthday', $contact->birthday ?? '') }}" inputClass="date" />                        
                 </div>
             </div>
             <div class="row mb-30">
@@ -75,6 +64,15 @@ body {
                         @endcan
                     </div>
                 </div>
+                <div class="col-lg">                        
+                    <x-inputs.text inputName="birthday" inputId="birthday" inputLabel="{{ __('Birthday') }}" inputValue="{{ old('birthday', $contact->birthday ?? '') }}" inputClass="date" />                        
+                </div>
+            </div>
+            <div class="row mb-30">
+               
+                <div class="col-lg">
+                    <x-inputs.select inputName="language_tags[]" inputId="preferred_languages" inputLabel="{{ __('Preferred Languages') }}" placeholder="{{ __('Select Languages') }}" :inputValue="old('language_tags[]',  $langusages_array ??  $contact->tags)" :inputData="$languages" inputClass="select2" inputType="multiple" showButtons="false"/>
+                </div>
                 @if(!Auth::user()->isAgent)
                     <div class="col">
                         <x-inputs.select inputName="agents[]" inputId="agents" inputLabel="{{ __('Agents') }}" placeholder="{{ __('Select Agents') }}" :inputValue="old('agents',  $contact->agents)" :inputData="$agents" inputClass="select2" inputType="multiple"/>
@@ -92,15 +90,29 @@ body {
             <h4 class="mb-30">Detailed Information</h4>
             <div class="row">
                 <div class="col-lg">
-                    <x-inputs.text inputName="passport" inputId="passport" inputLabel="{{ __('Passport') }}" inputValue="{{ old('passport', $contact->passport ?? '') }}" />
+                    <x-inputs.text inputName="passport" inputId="passport" inputLabel="{{ __('National ID') }}" inputValue="{{ old('passport', $contact->passport ?? '') }}" />
                 </div>
-                <div class="col-lg">
-                    <x-inputs.text inputName="passport_expiry" inputId="passport_expiry" inputLabel="{{ __('Passport Expiry') }}" inputValue="{{ old('passport_expiry', $contact->passport_expiry ?? '') }}" type="date"/>
-                </div>   
+                {{-- <div class="col-lg">
+                    <x-inputs.text inputName="passport_expiry" inputId="passport_expiry" inputLabel="{{ __('National ID Expiry') }}" inputValue="{{ old('passport_expiry', $contact->passport_expiry ?? '') }}" type="date"/>
+                </div>    --}}
             </div>
-            <div class="row mb-30">
+            <div class="row mb-30 mt-30">
                 <div class="col-lg">
-                    <label for="photos">Passport Photocopy</label>
+                    <label for="photos">ID Photocopy</label>
+                    @forelse($contact->getMedia('passport-photos') as $_file)
+                    <div class="row mb-10" id="{{$_file->id}}">
+                        <div class="col-11 justify-content-start">
+                            <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ $_file->name }} ({{ $_file->mime_type }})</a></p>
+                        </div>
+                        <div class="col">
+                            <a href="#" parent-id="{{ $_file->id }}" data-value="{{route('dashboard.units.deleteMedia' , $_file)}}" class="delete-files cursor-pointer" ><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                    @empty
+                        <span>No Attachments</span>
+                    @endforelse
+
+                    
                     <input type="file" id="photos" name="photos[]" class="form-control" multiple>
                 </div>
             </div>

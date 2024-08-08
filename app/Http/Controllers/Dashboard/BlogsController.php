@@ -21,7 +21,7 @@ class BlogsController extends BaseController
         $query= Blog::orderBy('publish_date','DESC')->orderBy('title');
         if ($search = request()->search)
             $query->where('title' , 'like' , "%$search%")
-            ->orWhere('description' , 'like' , "%$search%")
+            ->orWhere('publish_date' , $search)
             ->orWhereHas('tags', function (Builder $subQuery) {
                 $subQuery->where('name', 'like', "%".request()->search."%");
             });
@@ -39,8 +39,8 @@ class BlogsController extends BaseController
 
     public function create()
     {
-        $tags = $this->getTags('blog')->prepend('- Choose', '');
-        $users = User::pluck('name' , 'id')->prepend(__('-Choose') , '');
+        $tags = $this->getTags('blog');
+        $users = User::pluck('name' , 'id');
         abort_if(Gate::denies('blog_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $local_title = __('Add Blog');
         $breadcrumbs[] = ['label' => __('Dashboard'), 'url' => route('dashboard.home')];
@@ -61,7 +61,7 @@ class BlogsController extends BaseController
         if ($request->hasFile('photos')){
             foreach($request->file('photos') as $_file){
                 $blog->addMedia($_file)
-                ->usingName($blog->title)
+                ->usingName($request->title)
                 ->toMediaCollection('blog-photos', 'media');
                 $blog->save();
             }
@@ -89,7 +89,7 @@ class BlogsController extends BaseController
     {
         abort_if((Gate::denies('blog_edit') || !$blog->allowEdit), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $tags = $this->getTags('blog');
-        $users = User::pluck('name' , 'id')->prepend(__('- Choose') , '');
+        $users = User::pluck('name' , 'id');
         $local_title = sprintf('%s: %s', __('Edit Blog'), $blog->title);
         $breadcrumbs[] = ['label' => __('Dashboard'), 'url' => route('dashboard.home')];
         $breadcrumbs[] = ['label' => __('Blogs'), 'url' => route('dashboard.blogs.index')];

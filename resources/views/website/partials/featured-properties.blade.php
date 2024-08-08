@@ -1,6 +1,6 @@
 @if($featueredProperties->count())
     <div class="widget property_carousel_widget">
-        <h5 class="mb-30">Feature Property</h5>
+        <h5 class="mb-30">{{$listTitle ?? 'Feature Property'}}</h5>
         <div class="single-carusel owl-carousel nav-disable">
             @foreach ($featueredProperties as $_unit)
                 <div class="item">
@@ -11,15 +11,13 @@
                                     </div>
                                     <a href="{{ route('propertyShow' ,['unit' => $_unit->slug]) }}"><img src="{{ ($_unit->getMedia('unit-photos')->count()) ? $_unit->Featured : 'Featured assets/images/new/property-grid-1.jpg'}}" alt="$_unit->slug"></a>
                                     <ul class="position-absolute quick-meta">
-                                        {{-- karam --}}
                                         @if (auth()->user())
                                             <li onclick="toggleIconClass(this.querySelector('i:first-child'))">
                                                 <a href="#" link="{{route('api.new-favorite' , ['unit' => $_unit])}}" title="Add Favourite">
-                                                    <i class="{{array_search($_unit->id, $favorites , true) ? 'fa fa-heart' : 'flaticon-like-1'}} flat-mini" ></i>
+                                                    <i class="{{$_unit->isFavourite ? 'fa fa-heart' : 'flaticon-like-1'}} flat-mini" ></i>
                                                 </a>
                                             </li>
-                                        @endif  
-                                        <li class="md-mx-none"><a class="quick-view vModal" href="#quick-view{{$_unit->id}}"  title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
+                                        @endif
                                     </ul>
                         </div>
                         <div class="post-content py-3">

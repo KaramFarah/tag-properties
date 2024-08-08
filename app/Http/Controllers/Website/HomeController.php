@@ -90,10 +90,8 @@ class HomeController extends WebsiteController
             'mailer.phone'         => ['required'],
             'mailer.email'         => ['required'],
             'mailer.message'       => ['required'],
-            'g-recaptcha-response'  => ['required', new ReCaptchaV3('submitMessage')],
+            // 'g-recaptcha-response'  => ['required', new ReCaptchaV3('submitMessage')],
         ]);
-
-
         $user = null;
         if (config('panel.create_lead_getHelp')){
             DashboardHelper::createLead(request()->get('mailer'), 'Website - Contact');
@@ -109,12 +107,11 @@ class HomeController extends WebsiteController
         ]);
 
         $user = User::firstOrCreate(['email' => config('panel.contact_receiver')]);
-
+       
         if (request()->get('mailer')['email'] && request()->get('mailer')['message']){
             Notification::send($user, new SendContact(request()->get('mailer')));
             return back()->with('success', __('Your request was sent successfully. We will contact you soon.'));
-        }
-        else{
+        }else{
             return back()->with('danger', __('Invalid data! try again.'));
         }
         

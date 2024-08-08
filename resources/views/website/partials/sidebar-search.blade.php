@@ -29,18 +29,9 @@
                     @endforeach
                 </select>
             </div>
-            {{-- @include('fullwidth.partials.countries', ['selected_country' => '']) --}}
-            <div class="col-12">
-                <select class="form-select py-2" name="scountry">
-                    <option value="">{{__('- Country')}}</option>
-                    @foreach ($countries as $key => $country)
-                        <option @selected(request()->get('scountry') == $key) value="{{$key}}">{{$country}}</option>
-                    @endforeach
-                </select>
-            </div>
             <div class="col-12">
                 <div class="position-relative">
-                    <input type="text" value="{{request()->get('slocation')}}" class="form-control" name="slocation" placeholder="City">
+                    <input type="text" value="{{request()->get('saddress')}}" class="form-control" name="saddress" placeholder="Address">
                     <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                 </div>
             </div>
@@ -51,7 +42,7 @@
                         <div class="area-filter price-filter">
                             <span class="price-slider">
                                 <input class="filter_price" type="text" name="sprice"
-                                value="{{$price_string ?? '1000;1000000000'}}" />
+                                value="{{$price_string ?? '0;10000000'}}" />
                             </span>
                         </div>
                     </div>
@@ -88,8 +79,7 @@
                         @foreach ($features as $key => $_feature)
                             @if($_feature->value_type == \App\Models\Dashboard\Tag::VALUE_TYPE_BOOLEAN)    
                                 <li class="col">
-                                    {{-- {{dd((string)$key)}} --}}
-                                    <input @checked(request()->has('sFeatures') && in_array($key, request()->get('sFeatures'))) name="sFeatures[]" type="checkbox" class="custom-control-input hide" id="customCheck{{$loop->index}}" value="{{$key}}">
+                                    <input @checked(request()->has('sFeatures') && in_array($_feature->id, request()->get('sFeatures'))) name="sFeatures[]" type="checkbox" class="custom-control-input hide" id="customCheck{{$loop->index}}" value="{{$_feature->id}}">
                                     <label class="custom-control-label" for="customCheck{{$loop->index}}">{{$_feature->name}}</label>
                                 </li>
                             @endif

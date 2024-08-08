@@ -7,7 +7,7 @@
                     <div class="footer-logo mb-4">
                         <a href="#"><img src="{{ asset('assets/fullwidth/images/logo-new/logo-white.png') }}" alt="Image not found!" /></a>
                     </div>
-                    <p>Committed to elevating your real estate endeavors with our extensive expertise and personalized guidance in the dynamic UAE market. Our seasoned team of professionals brings years of experience in property advisory, investment analysis, and real estate consultation, ensuring that your unique goals and needs are not only met but exceeded.</p>
+                    <p>Committed to elevating your real estate endeavors with our extensive expertise and personalized guidance in the dynamic Syrian market. Our seasoned team of professionals brings years of experience in property advisory, investment analysis, and real estate consultation, ensuring that your unique goals and needs are not only met but exceeded.</p>
                 </div>
                 <div class="footer-widget media-widget mb-4">
                     <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
@@ -20,7 +20,7 @@
                 <div class="footer-widget contact-widget mb-4">
                     <h3 class="widget-title mb-4">{{__('Contact Info')}}</h3>
                     <ul>
-                        <li>Tag Properties Business Bay, Dubai, AE.</li>
+                        <li>Tag Properties Business Bay, Tishreen-University, Lattakia, SY.</li>
                         <li> {{config('panelphone')}} </li>
                         <li>{{config('panel.website_email')}}</li>
                     </ul>

@@ -39,7 +39,7 @@ class AuditLogsController extends BaseController
         if ($search = request()->search){
             $query->where(function($query) use ($search){
                 $query->where('subject_id' , $search)
-                ->orWhere('subject_type' , 'like' , "$search%");
+                ->orWhere('subject_type' , $search);
             });
         }
         $items = $query->paginate(100)->appends([

@@ -38,7 +38,9 @@
                                     <a class="nav-link" href="#"><img src="{{ asset('assets/fullwidth/images/user1.jpg') }}" alt=""> Hi, {{ auth()->user()->name ?? '' }}</a>
                                 </li> --}}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#"><img src="{{ asset('assets/fullwidth/images/user1.jpg') }}" alt="user avatar"> Hi, {{ auth()->user()->name ?? '' }}</a>
+                                    <a class="nav-link dropdown-toggle" href="#">
+                                        {{-- <img src="{{ asset('assets/fullwidth/images/user1.jpg') }}"alt="user avatar"> --}}
+                                         Hi, {{ auth()->user()->name ?? '' }}</a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="{{route('homepage')}}"><i class="fa-solid fa-link pe-2"></i>{{__('Website')}}</a></li>
                                         <li><a class="dropdown-item" href="{{ route('profile.password.edit') }}"><i class="flaticon-locked flat-mini pe-2"></i> {{ __('Change Password') }}</a></li>

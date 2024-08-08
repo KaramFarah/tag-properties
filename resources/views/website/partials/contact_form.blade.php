@@ -1,26 +1,43 @@
 <div class="widget widget_contact bg-white border p-30 shadow-one rounded mb-30">
     @if (Route::currentRouteName() === 'propertyShow')
-        @isset($unit->creator)
-            <h5 class="mb-4">{{ __('Listed By') }}</h5>
-            <div class="media mb-3">
-                <img class="rounded-circle me-3" src="{{ asset('assets/fullwidth/images/user1.jpg') }}" alt="avata">
-                <div class="media-body">
-                    <div class="h6 mt-0">{{$unit->creator->name ?? ''}}</div>
-                    @if (auth()->user())
-                        <div class="row">
-                            <div class="col">
-                                <span>{{$unit->creator->email ?? ''}}</span>
-                            </div>
-                            <div class="col">
-                                <span>{{$unit->creator->phone ??  'No phone Info'}}</span>
-                            </div>
-                        </div>
-                    @else
-                        <span><i>{{__('Login to access agent details')}}</i></span>
-                    @endif
+        <h5 class="mb-4">{{ __('Listed By') }}</h5>
+        <div class="media mb-3">
+            <div class="media-body">
+        @if (!is_null($unit->assignee->first()))
+            <div class="h6 mt-0">{{$unit->assignee->first()->name ?? ''}}</div>
+            @if (auth()->user())
+                <div class="row">
+                    <div class="col">
+                        <span>{{$unit->assignee->first()->email ?? ''}}</span>
+                    </div>
+                    <div class="col">
+                        <span>{{$unit->assignee->first()->phone ??  'No phone Info'}}</span>
+                    </div>
                 </div>
+            @else
+                <span><i>{{__('Login to access agent details')}}</i></span>
+            @endif
+        @elseif (!is_null($unit->creator) && is_null($unit->assignee->first()))
+            <div class="h6 mt-0">{{$unit->creator->name ?? ''}}</div>
+            @if (auth()->user())
+                <div class="row">
+                    <div class="col">
+                        <span>{{$unit->creator->email ?? ''}}</span>
+                    </div>
+                    <div class="col">
+                        <span>{{$unit->creator->phone ??  'No phone Info'}}</span>
+                    </div>
+                </div>
+            @else
+                <span><i>{{__('Login to access agent details')}}</i></span>
+            @endif
+        @endif
+       
+                
+               
             </div>
-        @endisset
+        </div>
+
     @else
         <h5 class="mb-4">{{ __('Contact Us') }}</h5>
     @endif

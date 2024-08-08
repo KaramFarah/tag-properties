@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Rules\ReCaptchaV3;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Helpers\DashboardHelper;
 use App\Otp\UserRegistrationOtp;
 use App\Http\Controllers\Controller;
@@ -87,6 +88,7 @@ class RegisterController extends Controller
         $local_description = 'Login or Register to use our online features';
 
         $validator = $request->validate([
+            'phone' => 'nullable|unique:contacts,mobile',
             'name' => [
                 'string',
                 'required',
@@ -100,6 +102,7 @@ class RegisterController extends Controller
             'password' => [
                 'required',
             ],
+            // 'phone' => ['required' ,'digits:10' , Rule::unique('contacts')]
             // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitContact')],
         ]);
 

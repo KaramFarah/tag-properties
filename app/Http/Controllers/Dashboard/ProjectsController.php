@@ -40,7 +40,6 @@ class ProjectsController extends BaseController
         if(request()->has('search')){
             $query->where('name', 'like', '%'.request()->get('search').'%')
             ->orWhere('description', 'like', '%'.request()->get('search').'%')
-            ->orWhere('opening_date', 'like', '%' . request()->get('search') . '%')
             ->orWhereHas('developers', function ($query){
                 $query->where('name', 'like', request()->get('search'));
             });
@@ -124,7 +123,7 @@ class ProjectsController extends BaseController
     
                 $checkArray = array_filter($range , null);
     
-                if(empty($checkArray)) continue;
+                if(empty($checkArray) <= 1) continue;
     
                 $range = Range::updateOrCreate(['id' => $range['id']] , $range);
                 

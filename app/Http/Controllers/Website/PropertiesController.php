@@ -41,16 +41,18 @@ class PropertiesController extends WebsiteController
         $propertyStatuses = (new Unit)->propertyStatuses;
         
         //  SEARCH START
+        // dd(request()->get('sprice'));
         $price_array = explode(';' , request()->get('sprice'));
         $price_string = implode(';' , $price_array);
-        $price_array[0] == 0 ? '' : $price_string = '1000' . $price_string; 
-        isset($price_array[1]) ? '' : $price_string = $price_string . ';100000000';
+        $price_array[0] == 0 ? '' : $price_string = '0' . $price_string; 
+        isset($price_array[1]) ? '' : $price_string = $price_string . ';5000000';
         $price_array[0] == 0 ? $price_array[0] = 1 : '';
+        
         if($price_array[0] && $price_array[1]){
             $query->where('price' , '>=' , $price_array[0])
             ->where('price' , '<=' , $price_array[1]);
         }
-        
+        // dd($query->get());
         if(request()->has('sproperty_purpose') && request()->get('sproperty_purpose')){
             $query->where('property_purpose', request()->get('sproperty_purpose'));
         }
@@ -74,9 +76,13 @@ class PropertiesController extends WebsiteController
             $query->where(['area_sqft' , '>=' , request()->get('smin_area')]);
         }
         // $query->where('garage', request()->query('sgarage'));
-
+        
         if(request()->has('sstatus') && request()->get('sstatus')){
             $query->where('property_status', request()->get('sstatus'));
+        }
+
+        if(request()->has('saddress') && request()->get('saddress')){
+            $query->where('address', 'like' , "%" . request()->get('saddress') . "%");
         }
         // isset($countries[$project->country]) ? $country = $countries[$project->country] : $country = '';
         // if($slocation){
@@ -98,24 +104,25 @@ class PropertiesController extends WebsiteController
         //     });
         // }
 
-        if(request()->has('scountry') && request()->get('scountry')){
-            $query->whereHas('project', function($query) {
-                $query->where('country' , request()->get('scountry'));
-            });
-        }
+        // if(request()->has('scountry') && request()->get('scountry')){
+        //     $query->whereHas('project', function($query) {
+        //         $query->where('country' , request()->get('scountry'));
+        //     });
+        // }
+
         if(request()->has('sFeatures') && request()->get('sFeatures')){
             $query->whereHas( 'tags', function($query){
                 $query->whereIn('unit_tag.tag_id',request()->get('sFeatures'))
                 ->havingRaw('count(DISTINCT unit_tag.tag_id) = '. count(request()->get('sFeatures')));
             });
         }
+
         if(request()->has('skeyword') && request()->get('skeyword')){
             $query->where(function($query) {
                 $query->where('name' , 'like' , '%'.request()->has('skeyword').'%')
                 ->orWhere('description' , 'like' , '%'.request()->has('skeyword').'%');
             });
         }
-
         $units = $query->paginate(20)->withQueryString();
 
         // Get Favourite Units

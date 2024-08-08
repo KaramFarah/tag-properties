@@ -2,7 +2,7 @@
 {{-- @extends('website.layout.app-blog') --}}
 @section('pageTitle', __($unit->name) . ' | ' . config('panel.website_title'))
 @section('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="{{asset('assets/fullwidth/css/bootstrap-icons1-11-3.css')}}">
 {{-- <link rel="stylesheet" href="{{asset('assets/webfonts/bootstrap_icons/bootstrap-icons.min.css')}}"> --}}
 @endsection
 @section('content')

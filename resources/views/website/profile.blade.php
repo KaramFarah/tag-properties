@@ -12,9 +12,9 @@
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="fill-tab-0" data-bs-toggle="tab" href="#fill-tabpanel-0" role="tab" aria-controls="fill-tabpanel-0" aria-selected="true"> <h6>{{ __('Favorites') }}</h6></a>
                         </li>
-                        <li class="nav-item" role="presentation">
+                        {{-- <li class="nav-item" role="presentation">
                           <a class="nav-link" id="fill-tab-1" data-bs-toggle="tab" href="#fill-tabpanel-1" role="tab" aria-controls="fill-tabpanel-1" aria-selected="false"> <h6>{{ __('Listed Properties') }}</h6> </a>
-                        </li>
+                        </li> --}}
                     </ul>
                     <div class="tab-content pt-5" id="tab-content">
                         <div class="tab-pane active" id="fill-tabpanel-0" role="tabpanel" aria-labelledby="fill-tab-0">

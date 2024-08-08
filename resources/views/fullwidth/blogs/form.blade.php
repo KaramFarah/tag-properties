@@ -10,16 +10,18 @@
                 </script>
             @endsection
             <x-inputs.text inputName="title" inputId="title" inputLabel="{{ __('Title') }}" inputRequired="required" inputValue="{{ old('title', $blog->title ?? '') }}" inputHint="" inputClass="mb-30" class=""/>
-            <x-inputs.text inputName="description" inputId="description" inputLabel="{{ __('Description') }}" inputRequired="required" inputValue="{{ old('description', $blog->description ?? '') }}" inputHint="" inputClass="" class="mb-30"/>
+            {{-- <x-inputs.text inputName="description" inputId="description" inputLabel="{{ __('Description') }}" inputRequired="required" inputValue="{{ old('description', $blog->description ?? '') }}" inputHint="" inputClass="" class="mb-30"/> --}}
             <div class="row">
                 <div class="col-md-6">
-                    <x-inputs.text inputName="link" inputId="link" inputLabel="{{ __('Link') }}" inputRequired="" inputValue="{{ old('link', $blog->link ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
+                    <x-inputs.text inputName="description" inputId="description" inputLabel="{{ __('Description') }}" inputRequired="required" inputValue="{{ old('description', $blog->description ?? '') }}" inputHint="" inputClass="" class="mb-30"/>
+                    {{-- <x-inputs.text inputName="link" inputId="link" inputLabel="{{ __('Link') }}" inputRequired="" inputValue="{{ old('link', $blog->link ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/> --}}
                 </div>
-                <div class="col-md-6">
-                    <div class="input-group mb-3">
-                        <x-inputs.select inputName="tags[]" inputId="tags" inputLabel="{{ __('Categories') }}" inputRequired="required" :inputValue="old('tags', $blog->tags ?? '')" :inputData="$tags" class="mb-3" inputType="multiple" showButtons="false" inputClass="select2" />
+                <div class="col-md-6 mb-3">
+                    <div class="input-group ">
+                        <x-inputs.select inputName="tags[]" inputId="tags" inputLabel="{{ __('Categories') }}" inputRequired="required" :inputValue="old('tags', $blog->tags ?? '')" :inputData="$tags" class="mb-3 w-75" inputType="multiple" showButtons="false" inputClass="select2" />
+                        
                         @can('tag_create')
-                            <button class="btn btn-light m-4" id="openModelAddNewCenters" type="button" data-bs-toggle="modal" data-bs-target="#addTagModal"><i class="fa fa-plus"></i></button>
+                            <button style="height: max-content;" class="btn btn-light ms-1 mt-4" id="openModelAddNewCenters" type="button" data-bs-toggle="modal" data-bs-target="#addTagModal"><i class="fa fa-plus"></i></button>
                         @endcan
                     </div>
                 </div>
@@ -28,7 +30,19 @@
                 <div class="col mb-30">
                     <x-inputs.textarea inputName="content" inputId="content" inputLabel="{{ __('Content') }}" error="{{ $errors->has('content') ? $errors->first('content') : '' }}"  showButtons="false" inputValue="{!! old('content', $blog->content ?? '') !!}" inputClass=""  />
                 </div>
-                
+                <div class="mb-30">
+                    <ul class="row row-cols-xl-6 row-cols-md-3 row-cols-2 media-upload">
+                        @if (isset($blog->thumbImages))              
+                            @foreach($blog->thumbImages as $_media)
+                                <li class="col" id="{{ $_media->id }}">
+                                    <img src="{{ $_media->getUrl('thumb')}}" class="rounded pb-30" alt="{{ $_media->name }}">
+                                    <a href="#" ><i class="fas fa-trash"></i></a>
+                                    <a parent-id="{{ $_media->id }}" data-value="{{route('dashboard.units.deleteMedia' , $_media)}}" class="delete-image"><i class="fas fa-trash"></i></a>
+                                </li>
+                            @endforeach    
+                        @endif
+                    </ul>
+                </div>
                 <div class="col-md-12 mb-30">
                     <label for="photos">{{__('PHOTO')}}</label>
                     <input type="file" id="photos" name="photos[]" class="form-control" multiple>
@@ -39,7 +53,7 @@
                     <x-inputs.select inputName="user_id" inputId="user_id" inputLabel="{{ __('Author') }}" placeholder="" inputRequired="required" :inputValue="$blog->user_id" :inputData="$users" inputHint="" inputClass="form-select required" class="mb-3" showButtons="false" />
                 </div>
                 <div class="col-md-6">
-                    <x-inputs.text inputName="publish_date" inputId="publish_date" inputLabel="{{ __('Publish Date') }}" inputRequired="required" inputValue="{{old('publish_date') ?? $blog->publish_date}}" inputHint="" inputClass="form-select required" class="mb-30" type="date"/>
+                    <x-inputs.text inputName="publish_date" inputId="publish_date" inputLabel="{{ __('Publish Date') }}" inputRequired="required" inputValue="{{old('publish_date') ?? $blog->publish_date}}" inputHint="" inputClass="form-select" class="mb-30" type="date"/>
                 </div>
             </div>
         </div>

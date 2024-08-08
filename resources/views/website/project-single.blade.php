@@ -33,8 +33,8 @@
                     @include('website.partials.contact_form')
                     
                     <!-- Property Search -->
-
-                    @include('website.partials.recent-projects')
+                    @include('website.partials.featured-properties' , ['featueredProperties' => $project->units , 'listTitle' => 'Realted Properties'])
+                    {{-- @include('website.partials.recent-projects') --}}
                     <!--============== Recent Property Widget End ==============-->
                 </div>
                 <div class="col-xl-8 order-xl-1">
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                     </div>
-                    @if ($project->project_features)
+                    @if (!is_null($project->project_features))
                         <div class="property-overview border rounded bg-white p-30 mb-30">
                             <div class="row row-cols-1">
                                 <div class="col">
@@ -95,8 +95,8 @@
                             </div>
                         </div>
                     @endif
+                    @if ($project->brochure->count())
                     <div class="property-overview border rounded bg-white p-30 mb-30">
-                        @if ($project->brochure->count())
                             <div class="row row-cols-1">
                                 <div class="col">
                                     {{-- Property Features --}}
@@ -115,46 +115,8 @@
                                     @endforeach
                                 </div>
                             </div>
-                        @endif
-                        @if ($project->availabilityList->count())
-                            <div class="row row-cols-1">
-                                <div class="col">
-                                    <h5 class="mb-3">{{ __('Availability List') }}</h5>
-                                    @foreach($project->availabilityList as $_file)
-                                        <div class="row mb-10" id="{{$_file->id}}">
-                                            <div class="col-11 justify-content-start">
-                                                @auth
-                                                    <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</a></p>
-                                                @endauth
-                                                @guest
-                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#downloadAttachment" data-bs-value="{{ $_file->getUrl() }}">{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</button>
-                                                @endguest
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                        @if ($project->paymentPlan->count())
-                            <div class="row row-cols-1">
-                                <div class="col">
-                                    <h5 class="mb-3">{{ __('Payment Plan') }}</h5>
-                                    @foreach($project->paymentPlan as $_file)
-                                        <div class="row mb-10" id="{{$_file->id}}">
-                                            <div class="col-11 justify-content-start">
-                                                @auth
-                                                    <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</a></p>
-                                                @endauth
-                                                @guest
-                                                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#downloadAttachment" data-bs-value="{{ $_file->getUrl() }}">{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</button>
-                                                @endguest
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                     <div class="property-overview border rounded bg-white p-30 mb-30">
                         <div class="row row-cols-1">
                             <div class="col">

@@ -118,8 +118,8 @@ class UnitsController extends BaseController
 
         }
 
-        $cities = $this->createCities($request->cities);
-        $model->cities()->sync($cities);
+        // $cities = $this->createCities($request->cities);
+        // $model->cities()->sync($cities);
 
         if($request->get('tagTextInput') && count($request->get('tagTextInput'))){
             foreach($request->tagTextInput as $key => $tagText) $tagText ? $model->tags()->sync([$key => ['tag_value' => $tagText]], false) : '';
@@ -275,6 +275,7 @@ class UnitsController extends BaseController
      */
     public function update(UnitRequest $request, Unit $unit)
     {
+        // dd($unit->address);
 
         if (!$request->has('availability')){
             $request->merge([
@@ -295,7 +296,7 @@ class UnitsController extends BaseController
         is_Null($rquestInput['area_sqft']) ? $rquestInput['area_sqft'] = 0 : '';  
         is_Null($rquestInput['bedrooms']) ? $rquestInput['bedrooms'] = 1 : '';  
         is_Null($rquestInput['bathrooms']) ? $rquestInput['bathrooms'] = 1 : '';  
-
+        
         $unit->update($rquestInput);
 
         $unit->assignee()->sync($request->get('user_id') , true);
@@ -309,8 +310,8 @@ class UnitsController extends BaseController
 
         $unit->setRelation('tags', null); //Remove all first
 
-        $cities = $this->createCities($request->cities);
-        $unit->cities()->sync($cities);
+        // $cities = $this->createCities($request->cities);
+        // $unit->cities()->sync($cities);
 
         $unit->tags()->sync($request->input('propertyFeatures', []));
         if(count($request->tagTextInput)){

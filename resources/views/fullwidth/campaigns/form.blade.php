@@ -17,11 +17,6 @@
                     <x-inputs.text inputName="end_date" inputId="end_date" inputLabel="{{ __('End Date') }}" inputRequired="required" inputValue="{{old('end_date', $campaign->end_date )}}" inputHint="" inputClass="mb-30 " type="date"/>          
                 </div>
             </div>
-            <div class="row mb-20">
-                <div class="col-md-12">
-                    <x-inputs.textarea inputName="network" inputId="network" inputLabel="{{ __('Network ID') }}" inputRequired="" inputValue="{{ old('network', $campaign->network ?? '') }}" inputHint="" inputClass="" class=""/>
-                </div>
-            </div>
         </div>
     </div>
 </div>            

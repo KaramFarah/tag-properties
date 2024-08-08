@@ -2,7 +2,6 @@
 
 namespace App\Models\Dashboard;
 
-use App\Helpers\DashboardHelper;
 use Carbon\Carbon;
 use App\Models\User;
 use \DateTimeInterface;
@@ -11,8 +10,10 @@ use Illuminate\Support\Str;
 use App\Models\Dashboard\City;
 use App\Models\Dashboard\Floor;
 use Spatie\Image\Manipulations;
+use App\Helpers\DashboardHelper;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Dashboard\NearbyPlace;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -291,6 +292,9 @@ class Unit extends BaseModel implements HasMedia
 
 
     public function getIsFavouriteAttribute(){
+        if(Auth::guest())
+        return false;
+    
         $buf = $this->users->pluck( 'id' , 'name')->toArray(); // all the users that like it
 
         $user = array_search(auth()->user()->id, $buf, true); // return the name of user how like it

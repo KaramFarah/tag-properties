@@ -76,6 +76,13 @@ class Blog extends BaseModel implements HasMedia
             //  ->crop(Manipulations::CROP_TOP_RIGHT, 820, 550);
     }
 
+
+    public function getThumbImagesAttribute(){
+        $images = $this->getMedia('blog-photos')->all();
+        if($images){
+            return $images;
+        }
+    }
     public function getThumbImageAttribute(){
         $image = $this->getMedia('blog-photos')->first();
         if($image){

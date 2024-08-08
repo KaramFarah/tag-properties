@@ -59,8 +59,8 @@
                 </div>
             </div> --}}
             <div class="row">
-                <div class="col-lg-6">
-                    <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Community') }}" inputRequired="required" inputValue="{{ old('community', $project->community ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
+                <div class="col">
+                    <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Address') }}" inputRequired="required" inputValue="{{ old('community', $project->community ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
                 </div>
             </div>
             <div class="row">
@@ -68,11 +68,6 @@
                 <input type="hidden" name="location" id="location" value="{{ old('location', $project->location ?? '35.52052844635452;35.80705384863964') }}">        
                 <div id="map" style="height: 400px; width: 100%" class="mb-30"></div>
             
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <x-inputs.text inputName="project_type" inputId="project_type" inputLabel="{{ __('Project Type') }}" inputRequired="" inputValue="{{ old('project_type', $project->project_type ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
-                </div>
             </div>
             <x-inputs.textarea inputName="project_features" inputId="project_features" inputLabel="{{__('Project Features')}}" error="{{ $errors->has('project_features') ? $errors->first('project_features') : '' }}"  showButtons="false" inputValue="{!! old('project_features', $project->project_features ?? '') !!}"/>
         </div>
@@ -200,61 +195,6 @@
                                 <input type="file" id="projectPhotos" name="projectPhotos[]" class="form-control {{ $errors->has('projectPhotos') ? 'is-invalid' : '' }}" multiple="multiple">
                                 @if($errors->has('projectPhotos'))
                                     <span class="text-danger">{{ $errors->first('projectPhotos') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-30">
-                    <div class="border rounded bg-white p-30">
-                        <h4 class="mb-4">{{ __('Availability List') }}</h4>
-                        @forelse($project->availabilityList as $_file)
-                        <div class="row mb-10" id="{{$_file->id}}">
-                            <div class="col-11 justify-content-start">
-                                <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ $_file->name }} ({{ $_file->mime_type }})</a></p>
-                            </div>
-                            <div class="col">
-                                <a href="#" parent-id="{{ $_file->id }}" data-value="{{route('dashboard.units.deleteMedia' , $_file)}}" class="delete-files cursor-pointer" ><i class="fas fa-trash"></i></a>
-                            </div>
-                        </div>
-                            
-                        @empty
-                            <span>{{ __('No Availability List File') }}</span>
-                        @endforelse
-                        <div class="form-row">
-                            <div class="col mb-20">
-                                <input type="file" id="availabilityList" name="availabilityList" class="form-control {{ $errors->has('availabilityList') ? 'is-invalid' : '' }}">
-                                @if($errors->has('availabilityList'))
-                                    <span class="text-danger">{{ $errors->first('availabilityList') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-30">
-                    <div class="border rounded bg-white p-30">
-                        <h4 class="mb-4">{{ __('Payment Plan') }}</h4>
-                        @forelse($project->paymentPlan as $_file)
-                            <div class="row mb-10" id="{{$_file->id}}">
-                                <div class="col-11 justify-content-start">
-                                    <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ $_file->name }} ({{ $_file->mime_type }})</a></p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" parent-id="{{ $_file->id }}" data-value="{{route('dashboard.units.deleteMedia' , $_file)}}" class="delete-files cursor-pointer" ><i class="fas fa-trash"></i></a>
-                                </div>
-                            </div>
-                        @empty
-                            <span>No Payment Plan</span>
-                        @endforelse
-                        <div class="form-row">
-                            <div class="col mb-20">
-                                <input type="file" id="paymentPlan" name="paymentPlan" class="form-control {{ $errors->has('paymentPlan') ? 'is-invalid' : '' }}">
-                                @if($errors->has('paymentPlan'))
-                                    <span class="text-danger">{{ $errors->first('paymentPlan') }}</span>
                                 @endif
                             </div>
                         </div>

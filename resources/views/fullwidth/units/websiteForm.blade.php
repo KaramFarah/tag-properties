@@ -107,7 +107,7 @@
             </div>
             <div class="row">
                 <div >
-                    <x-inputs.text inputName="address" inputId="address" inputLabel="{{ __('Address') }}" inputValue="{{ old('address', $unit->community ?? '') }}" class="mb-30" type="text"/>
+                    <x-inputs.text inputName="address" inputId="address" inputLabel="{{ __('Address') }}" inputValue="{{ old('address', $unit->address ?? '') }}" class="mb-30" type="text"/>
                 </div>
             </div>
             <div class="row">

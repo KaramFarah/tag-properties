@@ -15,50 +15,6 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row row-cols-xl-2 row-cols-1">
-                <div class="col px-0"><img src="assets/images/new/bg-5.jpg" alt="play video image"></div>
-                <div class="col bg-white" style="margin-top: -100px;">
-                    <div class="w-75 w-lg-100 sm-px-0" style="padding:50px 80px">
-                        <div class="simple-video-play d-flex mb-3">
-                            <div class="position-relative d-inline-block">
-                                <a data-fancybox href="https://www.youtube.com/watch?v=zSVjsQ34otY" class="rounded-circle position-relative bg-secondary" style="z-index: 10"><i class="flaticon-play-button position-relative xy-center flat-mini rounded-circle text-white"></i></a>
-                                <div class="loader position-absolute xy-center">
-                                    <div class="loader-inner ball-scale-multiple">
-                                        <div></div>
-                                        <div></div>
-                                    </div><span class="tooltip">
-                                <b>ball-scale-multiple</b></span>
-                                </div>
-                            </div>
-                            <div class="ps-4 text-secondary font-medium">Play Video</div>
-                        </div>
-
-                        <h2 class="text-secondary mb-5">At TAG Properties, we're more than real estate; we're the architects of your aspirations.</h2>
-                        <div class="bb-accordion ac-single-show accordion-plus-left">
-                            <div class="ac-card">
-                                <a class="ac-toggle text-dark text-truncate active" href="#">Realizing Dreamsn</a>
-                                <div class="ac-collapse show" style="display: block;">
-                                    <p>With a profound understanding of the UAE's real estate intricacies, TAG Properties is your trusted guide in property sales, leasing, investment advisory, concierge service, mortgage advice, and property management. We're committed to turning your property dreams into reality.</p>
-                                </div>
-                            </div>
-                            <div class="ac-card">
-                                <a class="ac-toggle text-dark text-truncate" href="#">Unwavering Excellence</a>
-                                <div class="ac-collapse">
-                                    <p>Our seasoned agents provide unwavering support, navigating the complexities of the market to ensure a seamless experience for buyers and sellers. We pride ourselves on leaving no stone unturned to find your perfect home.</p>
-                                </div>
-                            </div>
-                            <div class="ac-card">
-                                <a class="ac-toggle text-dark text-truncate" href="#">A Vision for You</a>
-                                <div class="ac-collapse">
-                                    <p>TAG Properties is dedicated to delivering professional, honest, and personalized service. Our mission is to establish ourselves as the preferred real estate brokerage in the UAE, based on excellence and trust. We're here to build long-lasting relationships, and we live by our ethos: "Service Beyond the Sale”.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 
@@ -98,7 +54,7 @@
                             <div class="simple-thumb transation px-4">
                                 <span class="h3 down-line text-general mb-4 d-table">01</span>
                                 <h5 class="my-3"><a href="#" class="text-secondary">Expertise Beyond Compare:</a></h5>
-                                <p>With an intimate understanding of the UAE real estate market, TAG Properties offers unrivaled expertise in property sales, leasing, investment, and management. Our experienced agents navigate market intricacies to provide you with the best guidance.</p>
+                                <p>With an intimate understanding of the Syiran real estate market, TAG Properties offers unrivaled expertise in property sales, leasing, investment, and management. Our experienced agents navigate market intricacies to provide you with the best guidance.</p>
                             </div>
                         </div>
                         <div class="col border-start border-geay mb-5">
@@ -128,45 +84,6 @@
         </div>
     </div>
     <!--============== Features End ==============-->
-
-    <!--============== Agents Start ==============-->
-    <div class="full-row">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="md-mb-30">
-                        <span class="tagline-2 text-primary">Awards & Honors</span>
-                        <h2 class="text-secondary mb-0">Awards</h2>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="row row-cols-md-4 row-cols-sm-2 row-cols-2 g-4 ">
-                        <div class="col">
-                            <a href="#" class="hover-img-upshow overflow-hidden pe-5 d-block">
-                                <img src="{{asset('assets/images/new/oh_logo_01-min.png')}}" alt="awards 1 image">
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="hover-img-upshow overflow-hidden pe-5 d-block">
-                                <img src="{{asset('assets/images/new/oh_logo_02-min.png')}}" alt="awards 2 image">
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="hover-img-upshow overflow-hidden pe-5 d-block">
-                                <img src="{{ asset('assets/images/new/oh_logo_03-min.png') }}" alt="awards 3 image">
-                            </a>
-                        </div>
-                        <div class="col">
-                            <a href="#" class="hover-img-upshow overflow-hidden pe-5 d-block">
-                                <img src="{{asset('assets/images/new/oh_logo_04-min.png')}}" alt="awards 4 image">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--============== Agents End ==============-->
 
     <!--============== Testimonials Start ==============-->
     <div class="full-row bg-white" style="background-image: url(assets/images/new/oh_bg-min.jpg); background-size: 100%">

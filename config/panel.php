@@ -6,7 +6,7 @@ return [
     'time_format' => 'H:i:s',
     'datetime_format' => 'Y-m-d H:i:s',
     'datetime_long_format' => 'l, jS F, Y h:i A',
-    'currency' => 'AED',
+    'currency' => 'SYP',
     'site_title' => 'TAG Properties Dashboard',
     'website_title' => 'TAG Properties',
     'template' => 'fullwidth',
@@ -15,7 +15,7 @@ return [
     'create_lead_getHelp' => true,
     'website_email' => 'karamfarha.dota@gmail.com',
     'phone_contacting' => '+963 988 708 915',
-    'contact_receiver' => 'walid@orjwan.net',
+    'contact_receiver' => 'karam@tishreen.net',
     'RECAPTCHA_V3_SITE_KEY'  =>'6LehFIkpAAAAAErRwvqsqDU8VzVpop71Zk-EI25n',
     'RECAPTCHA_V3_SECRET_KEY'=>'6LehFIkpAAAAADebvCY_7vQPXXV97HrfAsyTbBra'
 ];

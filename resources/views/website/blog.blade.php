@@ -49,11 +49,7 @@
                                         </a>
                                     </div>
                                     <div class="post-content ps-3">
-                                        <div class="post-meta font-mini text-uppercase list-color-light">
-                                            <a href="{{route('blog.index' , ['tag' => $blog->tags->first()->slug ?? ''])}}">
-                                                <span>{{$blog->tags[0]->name ?? ''}}</span>
-                                            </a>
-                                        </div>
+                                        
                                         <h5 class="mb-2">
                                             <a href="{{route('blog.show' , ['blog' => $blog])}}" class="transation text-dark hover-text-primary d-block">
                                                 {{$blog->title}}</a>
@@ -65,6 +61,19 @@
                                             @endif
                                             <a name="blog-date"><span>{{\Carbon\Carbon::parse($blog->publish_date)->format('d-m-Y')}}</span></a>
                                         </div>
+                                        <div class="mt-5">
+
+                                            @forelse ($blog->tags as $tag)
+                                                <div style="padding-left: 0px" class="d-inline badge post-meta font-mini text-uppercase list-color-light">
+                                                    <a href="{{route('blog.index' , ['tag' => $tag->slug ?? ''])}}">
+                                                        <span class="text-primary">{{$tag->name ?? ''}}</span>
+                                                    </a>
+                                                </div>
+                                            @empty
+
+                                            @endforelse
+                                        </div>
+                                            
                                     </div>
                                 </div>
                             </div>

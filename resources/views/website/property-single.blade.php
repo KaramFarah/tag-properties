@@ -1,9 +1,9 @@
 @extends('website.layout.app-blog')
 @section('pageTitle', __($unit->name) . ' | ' . __('All Properties') . ' | ' . config('panel.website_title'))
 @section('styles')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- <link rel="stylesheet" href="{{asset('assets/webfonts/bootstrap_icons/bootstrap-icons.css')}}"> --}}
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 @endsection
@@ -91,7 +91,6 @@
                                 @endif
                                 <li class="bg-light"><a href="{{route('print' , ['unit' => $unit])}}" title="Print Data" target="blank" class="text-dark"><i class="flaticon-printer flat-mini"></i></a></li> 
                                 <li class="bg-light"><a href="{{$shareLink['facebook']}}" title="Media share" class="text-dark" ><i class="bi bi-facebook flat-mini"></i></a></li>
-                                <li class="bg-light"><a href="{{$shareLink['twitter']}}" title="Media share" class="text-dark" ><i class="bi bi-twitter-x flat-mini"></i></a></li>
                                 <li class="bg-light"><a href="{{$shareLink['telegram']}}" title="Media share" class="text-dark" ><i class="bi bi-telegram flat-mini"></i></a></li>
                                 <li class="bg-light d-sm-none"><a href="{{$shareLink['whatsapp']}}" title="Media share" class="text-dark" ><i class="bi bi-whatsapp flat-mini"></i></a></li>
                                 {{-- <li class="bg-light"><a href="#" title="Download PDF" class="text-dark"><i class="fas fa-download flat-mini"></i></a></li> --}}

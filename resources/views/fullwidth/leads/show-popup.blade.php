@@ -4,11 +4,6 @@
         <i class="fa-brands fa-whatsapp"></i> {{ __('Whatsapp') }}
     </a>
     @endif
-    @if($lead->email)
-        <a class="btn btn-info rounded-pill" href="mailto:{{$lead->email}}&subject=Tag Properties Contact" title="{{ __('Send Email') }}">
-            <i class="fa-regular fa-envelope"></i> {{ __('Send Email') }}
-        </a>
-    @endif
     @can('call_create')
         <a class="btn btn-success rounded-pill" href="{{route('dashboard.actions.add' , $lead->id)}}" title="{{ __('Add Action Registery') }}">
             <i class="fa-regular fa-calendar-plus"></i> {{ __('Add Action') }}

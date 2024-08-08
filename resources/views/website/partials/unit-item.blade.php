@@ -8,13 +8,13 @@
                 <li><a href="#" link="{{route('api.new-favorite' , ['unit' => $unit])}}" title="Add Favourite"><i class="{{$unit->isFavourite ? 'fa fa-heart' : 'flaticon-like-1'}} flat-mini" onclick="toggleIconClass(this)"></i></a></li>
             @endif   
             {{-- asd  href="#"--}}                         
-            <li class="md-mx-none"><a class="quick-view vModal" href="#quick-view{{$unit->id}}"  title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li>
+            {{-- <li class="md-mx-none"><a class="quick-view vModal" href="#quick-view{{$unit->id}}"  title="Quick View"><i class="flaticon-zoom-increasing-symbol flat-mini"></i></a></li> --}}
         </ul>
     </div>
     <div class="property_text p-4">
         <span class="listing-price">{{ config('panel.currency') }} {{$unit->price}}<small> ( {{ $unit->propertyPurposeText }})</small></span>
         <h5 class="listing-title"><a href="{{ route('propertyShow' , ['unit' => $unit->slug ?? 'test']) }}">{{$unit->name}}{!! !$unit->published ? ' - <small class="text-warning">Unpublished</small>' : ''!!}</a></h5>
-        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->project->location ?? 'No loaction Info'}} </span>
+        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->project->address ?? 'No loaction Info'}} </span>
         <ul class="d-flex quantity font-fifteen">
             <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{$unit->bedrooms}}</li>
             <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{$unit->bathrooms}}</li>

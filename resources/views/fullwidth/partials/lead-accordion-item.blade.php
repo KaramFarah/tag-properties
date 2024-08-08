@@ -45,16 +45,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ __('Cities') }}</h5>
-                                    </th>
-                                    <td>
-                                        @foreach($lead->cities as $_city)
-                                            <span class="badge bg-info fs-6 m-1">{{$_city->name}}</span>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ __('Interests') }}</h5>
                                     </th>
                                     <td>
