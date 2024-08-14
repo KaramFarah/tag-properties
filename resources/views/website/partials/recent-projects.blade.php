@@ -3,7 +3,7 @@
     <ul>
         @foreach ($recentProjects as $_project)
             <li>
-                <img src="{{$_project->coverImage}}" alt="{{$_project->name}} thumbnail image">
+                <img src="{{$_project->coverImage ?? asset('assets/images/new/property-grid-1.jpg')}}" alt="{{$_project->name}} thumbnail image">
                 <div class="thumb-body">
                     <h6 class="listing-title"><a href="{{route('projects.show', ['project' => $_project])}}">{{$_project->name}}</a></h6>
                     <span class="listing-price">{{config('panel.currency')}}{{$_project->minPrice}}<small>( {{$_project->statusText}} )</small></span>

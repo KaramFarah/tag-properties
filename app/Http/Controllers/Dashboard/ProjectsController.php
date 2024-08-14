@@ -99,16 +99,6 @@ class ProjectsController extends BaseController
                     if ($model->addMedia($_file)->toMediaCollection('project-photos', 'media')) $model->save(); else $request->session()->flash('danger', __('Unable to save this file'));
                 }
             }
-            if ($request->hasFile('availabilityList')){
-
-                    if ($model->addMedia($request->availabilityList)->toMediaCollection('availability-list', 'media')) $model->save(); else $request->session()->flash('danger', __('Unable to save this file'));
-                
-            }
-            if ($request->hasFile('paymentPlan')){
-     
-                    if ($model->addMedia($request->file('paymentPlan'))->toMediaCollection('payment-plan', 'media')) $model->save(); else $request->session()->flash('danger', __('Unable to save this file'));
-                
-            }
             if ($request->hasFile('brochure')){
                 
                 if ($model->addMedia($request->brochure)->toMediaCollection('brochure', 'media')) $model->save(); else $request->session()->flash('danger', __('Unable to save this file'));
@@ -123,7 +113,7 @@ class ProjectsController extends BaseController
     
                 $checkArray = array_filter($range , null);
     
-                if(empty($checkArray) <= 1) continue;
+                if(count($checkArray) <= 1) continue;
     
                 $range = Range::updateOrCreate(['id' => $range['id']] , $range);
                 

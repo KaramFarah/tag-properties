@@ -97,6 +97,11 @@ class UnitRequest extends FormRequest
             ],
             'photos' => 'nullable|array|',
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048',
+            'attachment-file' => 'nullable|array|',
+            'attachment-file.*' => 'mimes:pdf|max:5048',
+            'floorPlan-file' => 'nullable|array|',
+            'floorPlan-file.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3048',
+
         ];
     }
     public function messages()
@@ -106,6 +111,10 @@ class UnitRequest extends FormRequest
                 'inputs.*.*.max'  => 'Too Larg Input!',
                 'photos.*.mimes' => 'Wrong File Type!',
                 'photos.*.max' => 'Too Larg File!',
+                'attachment-file.*.mimes' => 'Only pdf Allowed',
+                'attachment-file.*.max' => 'Too Larg File!',
+                'floorPlan-file.*.mimes' => 'Wrong File Type!',
+                'floorPlan-file.*.max' => 'Too Larg File!',
             ];
         }
 }

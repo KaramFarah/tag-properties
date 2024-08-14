@@ -243,9 +243,9 @@
             <x-inputs.text inputName="project_name" inputId="project_name" inputLabel="{{ __('Name') }}" inputValue="{{ old('project_name', '') }}" class="mb-30"  />
             <x-inputs.select inputName="developer" inputLabel="{{ __('Developer')}}" inputId="developers" placeholder="{{ __('Developers') }}" :inputValue="old('developer')" :inputData="$developers" class="mb-30" inputClass="select2" showButtons="false" />
             <x-inputs.select inputName="type" inputId="type" inputLabel="{{ __('Status') }}"  :inputData="$types" showButtons="false" inputValue="" class="mb-30"/>
-            <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Community') }}"  inputValue="{{ old('community') }}" inputHint="" inputClass="" class="mb-30"/>
-            <x-inputs.select inputName="province" inputId="province" inputLabel="{{ __('Emirate') }}" inputRequired="" :inputData="$emirates" showButtons="false" inputValue="" inputClass=" required" class="mb-30" />
-            <x-inputs.select inputName="country" inputLabel="{{ __('Country')}}" inputId="country" placeholder="{{ __('Select Country') }}" inputValue="" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" />
+            <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Address') }}"  inputValue="{{ old('community') }}" inputHint="" inputClass="" class="mb-30"/>
+            {{-- <x-inputs.select inputName="province" inputId="province" inputLabel="{{ __('Emirate') }}" inputRequired="" :inputData="$emirates" showButtons="false" inputValue="" inputClass=" required" class="mb-30" /> --}}
+            {{-- <x-inputs.select inputName="country" inputLabel="{{ __('Country')}}" inputId="country" placeholder="{{ __('Select Country') }}" inputValue="" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" /> --}}
         </div>
         <div class="modal-footer">
           <button type="button" id="saveProject" class="btn btn-primary closemodelAddNewProject" data-bs-dismiss="modal">{{ __('Add') }}</button>

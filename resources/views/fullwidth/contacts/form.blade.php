@@ -113,7 +113,12 @@ body {
                     @endforelse
 
                     
-                    <input type="file" id="photos" name="photos[]" class="form-control" multiple>
+                    <input type="file" id="photos" name="photos" class="form-control">
+                    <small style="color: red">
+                        @error('photos')
+                        {{$message}}    
+                        @enderror
+                    </small>
                 </div>
             </div>
             <div class="row mb-30">

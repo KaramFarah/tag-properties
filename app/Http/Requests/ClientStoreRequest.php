@@ -47,7 +47,8 @@ class ClientStoreRequest extends FormRequest
             'financing'               => 'nullable',                
             'rooms'                   => 'nullable',                
             'budget'                  => 'nullable',                
-            'expected_purchase_time'  => 'nullable'
+            'expected_purchase_time'  => 'nullable',
+            'photos' => 'nullable|mimes:png,jpg|max:3048'
         ];
     }
     public function messages()

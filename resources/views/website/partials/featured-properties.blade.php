@@ -9,7 +9,7 @@
                                     <div class="cata position-absolute">
                                         <span class="sale bg-secondary text-white">{{$_unit->propertyTypeText}}</span>
                                     </div>
-                                    <a href="{{ route('propertyShow' ,['unit' => $_unit->slug]) }}"><img src="{{ ($_unit->getMedia('unit-photos')->count()) ? $_unit->Featured : 'Featured assets/images/new/property-grid-1.jpg'}}" alt="$_unit->slug"></a>
+                                    <a href="{{ route('propertyShow' ,['unit' => $_unit->slug]) }}"><img src="{{ ($_unit->getMedia('unit-photos')->count()) ? $_unit->Featured : asset('assets/images/new/property-grid-1.jpg')}}" alt="$_unit->slug"></a>
                                     <ul class="position-absolute quick-meta">
                                         @if (auth()->user())
                                             <li onclick="toggleIconClass(this.querySelector('i:first-child'))">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="post-content py-3">
                                     <h5 class="listing-title"><a href="{{ route('propertyShow' ,['unit' => $_unit->slug]) }}">{{$_unit->name}}</a></h5>
-                                    <span class="listing-location"><i class="fas fa-map-marker-alt pe-1"></i>{{$_unit->project->fullLocation ?? 'No loaction Info'}}</span>
+                                    <span class="listing-location"><i class="fas fa-map-marker-alt pe-1"></i>{{$_unit->address ?? 'No Address Info'}}</span>
                                     <ul class="d-flex quantity font-fifteen">
                                         {{-- karam --}}
                                         <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{$_unit->bedrooms}}</li>

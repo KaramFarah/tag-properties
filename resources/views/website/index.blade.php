@@ -231,7 +231,7 @@
                                         <span class="listing-price">{{config('panel.currency')}} {{$unit->price}}<small> ( {{$unit->property_purpose_text}} )</small></span>
                                         <h5 class="listing-title"><a href="{{ route('propertyShow' , ['unit' => $unit->slug]) }}">{{$unit->name}}</a></h5>
                                         {{-- <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->project->fullLocation ?? 'No loaction Info'}} </span> --}}
-                                        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->fullLocation ?? 'No Loaction'}} </span>
+                                        <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$unit->address ?? ($unit->project->fullLocation ?? 'No Location')}} </span>
                                         <ul class="d-flex quantity font-fifteen">
                                             <li title="Beds"><span><i class="fa-solid fa-bed"></i></span>{{$unit->bedrooms}}</li>
                                             <li title="Baths"><span><i class="fa-solid fa-shower"></i></span>{{$unit->bathrooms}}</li>
@@ -423,7 +423,7 @@
                     <h3 class="text-white xs-text-center my-20 font-400">{{ __('Discover our expert services and sell your property quickly and profitably with TAG Properties.') }}</h3>
                 </div>
                 <div class="col-lg-3 col-md-4">
-                    <a href="{{ route('property-list') }}" class="btn btn-white y-center position-relative d-table xs-mx-auto ms-auto">{{ __('Sell Smarter with TAG') }}</a>
+                    <a href="#" class="btn btn-white y-center position-relative d-table xs-mx-auto ms-auto">{{ __('Sell Smarter with TAG') }}</a>
                 </div>
             </div>
         </div>

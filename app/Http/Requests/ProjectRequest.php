@@ -56,41 +56,33 @@ class ProjectRequest extends FormRequest
                 'nullable',
             ],
             'attachments.*' => [
-                File::types(['png', 'gif', 'jpeg', 'jpg', 'pdf', 'ppt', 'pptx', 'xls', 'xlsx', 'doc', 'docs'])
+                File::types(['png', 'jpeg', 'jpg']),
+                'max:3048'
             ],
             'projectPhotos' => [
                 'array',
                 'nullable',
             ],
             'projectPhotos.*' => [
-                File::types(['png', 'gif', 'jpeg', 'jpg', 'pdf', 'ppt', 'pptx', 'xls', 'xlsx', 'doc', 'docs'])
-            ],
-            'availabilityList' => [
-                'nullable',
-            ],
-            'availabilityList.*' => [
-                File::types(['pdf', 'xls', 'xlsx', 'doc', 'docs'])
-            ],
-            'paymentPlan' => [
-                'nullable',
-            ],
-            'paymentPlan.*' => [
-                File::types(['pdf', 'xls', 'xlsx', 'doc', 'docs'])
+                File::types(['png', 'jpeg', 'jpg']),
+                'max:5048'
             ],
             'brochure' => [
                 'nullable',
-            ],
-            'brochure.*' => [
-                File::types(['pdf', 'xls', 'xlsx', 'doc', 'docs'])
+                File::types(['pdf', 'xls', 'xlsx', 'doc', 'docs']),
+                'max:5048'
             ],
         ];
     }
     public function messages()
     {
         return [
-            'availabilityList.*' => 'Only PDF Allowed',
-            'paymentPlan.*' => 'Only PDF Allowed',
-            'brochure.*' => 'Only PDF Allowed',
+            'attachments.*' => 'Only Images Allowed',
+            'attachments.*.max' => 'File Larger Than 5 mb',
+            'projectPhotos.*' => 'Only Images Allowed',
+            'projectPhotos.*.max' => 'Files Larger Than 5 mb',
+            'brochure' => 'Only PDF Allowed',
+            'brochure.max' => 'File Larger Than 5 mb',
         ];
     }
 }

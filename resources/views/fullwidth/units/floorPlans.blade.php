@@ -18,27 +18,27 @@
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-6">   
                                         <label class="mb-20 font-fifteen font-500 w-100">{{__('Masted Bed')}}</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="inputs[{{$loop_index}}][master_bed]" class="form-control" value="{{ old('inputs[$loop_index][master_bed]', $floor->master_bed ?? '') }}" >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="inputs[{{$loop_index}}][master_bed]" class="form-control" value="{{ old('inputs[$loop_index][master_bed]', $floor->master_bed ?? '') }}" >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-6">
                                         <label class="mb-20 font-fifteen font-500 w-100  ">Kitchen</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="inputs[{{$loop_index}}][kitchen]" class="form-control" value="{{ old('inputs[$loop_index][kitchen]', $floor->kitchen ?? '') }}" >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="inputs[{{$loop_index}}][kitchen]" class="form-control" value="{{ old('inputs[$loop_index][kitchen]', $floor->kitchen ?? '') }}" >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-6">
                                         <label class="mb-20 font-fifteen font-500 w-100  ">Dining</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="inputs[{{$loop_index}}][dining]" class="form-control " value="{{ old('inputs[$loop_index][dining]', $floor->dining ?? '') }}" >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="inputs[{{$loop_index}}][dining]" class="form-control " value="{{ old('inputs[$loop_index][dining]', $floor->dining ?? '') }}" >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-6">
                                         <label class="mb-20 font-fifteen font-500 w-100  ">Baths</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="inputs[{{$loop_index}}][baths]" class="form-control" value="{{ old('inputs[$loop_index][baths]', $floor->baths ?? '') }}" >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="inputs[{{$loop_index}}][baths]" class="form-control" value="{{ old('inputs[$loop_index][baths]', $floor->baths ?? '') }}" >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                         <label class="mb-20 font-fifteen font-500 w-100  ">Storage</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="inputs[{{$loop_index}}][storage]" class="form-control" value="{{ old('inputs[$loop_index][storage]', $floor->storage ?? '') }}"  >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="inputs[{{$loop_index}}][storage]" class="form-control" value="{{ old('inputs[$loop_index][storage]', $floor->storage ?? '') }}"  >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                         <label class="mb-20 font-fifteen font-500 w-100  ">Space</label>
-                                        <input {{isset($readonly) ? 'readonly' : ''}} value="{{ old('inputs[$loop_index][space]', $floor->space ?? '') }}" type="text" name="inputs[{{$loop_index}}][space]" class="form-control "   >
+                                        <input {{isset($readonly) ? 'readonly' : ''}} value="{{ old('inputs[$loop_index][space]', $floor->space ?? '') }}" type="number" name="inputs[{{$loop_index}}][space]" class="form-control "   >
                                     </div>
                                     <div class="col-xl-4 col-lg-6 col-md-12">
                                         <label class="{{isset($readonly) ? 'd-none' : ''}} mb-20 font-fifteen font-500 w-100">Attachment</label>

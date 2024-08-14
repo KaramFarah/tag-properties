@@ -19,7 +19,7 @@
         <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="places[{{$loop_index}}][name]" value="{{ old('places[$loop_index][name]', $nearbyPlace->name ?? '') }}" class="form-control" placeholder="Name of the places">
     </div>
     <div class="col-xl-2 col-lg-6 col-md-6">
-        <input {{isset($readonly) ? 'readonly' : ''}} type="text" name="places[{{$loop_index}}][distance]" value="{{ old('places[$loop_index][distance]', $nearbyPlace->distance ?? '') }}" class="form-control" placeholder="Distance (km)">
+        <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="places[{{$loop_index}}][distance]" value="{{ old('places[$loop_index][distance]', $nearbyPlace->distance ?? '') }}" class="form-control" placeholder="Distance (km)">
     </div>
     <div class="col-xl-2 col-lg-6 col-md-6">
         <input {{isset($readonly) ? 'readonly' : ''}} type="number" name="places[{{$loop_index}}][minutes]" value="{{ old('places[$loop_index][minutes]', $nearbyPlace->minutes ?? '') }}" class="form-control" placeholder="Minutes">

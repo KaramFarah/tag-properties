@@ -9,11 +9,14 @@
 
 
 @if ($unit->project)
-    <div class="row text-center">
-        <img src="{{$unit->project->developers->first()->logo}}" alt="{{$unit->developerName}}">
-    </div>
+    @if ($unit->project->developers->count())
+        <div class="row text-center mx-50 px-50">
+            <img src="{{$unit->project->developers->first()->logo}}" alt="{{$unit->developerName}}">
+        </div>
+        
+    @endif
 @endif
-@if (isset($unit->thumbImage))
+{{-- @if (isset($unit->thumbImage))
     <div class="full-row p-0">
         <div class="container">
             <div class="row">
@@ -25,7 +28,7 @@
             </div>
         </div>
     </div>
-@endif
+@endif --}}
 
 
 <div class="full-row pt-30">
@@ -39,7 +42,7 @@
                                 <a href="#" class="listing-ctg"><i class="fa-solid fa-building"></i><span>{{$unit->propertyTypeText}}</span></a>
                             </div>
                             <h4 class="listing-title"><a href="#">{{$unit->name}}</a></h4>
-                            <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i> {{$unit->project->location ?? 'No location Info'}}</span>
+                            <span class="listing-location"><i class="fas fa-map-marker-alt text-primary"></i> {{$unit->address ?? ($unit->project->fullLocation ?? 'No Location')}}</span>
                             <a href="#" class="d-block text-light hover-text-primary font-small mb-2">{{$unit->recommendedCount ? '( ' . $unit->recommendedCount . ' People Recommended )' : ''}}</a>
                         </div>
                         <div class="col-auto ms-auto xs-m-0 text-end xs-text-start pb-4">
@@ -69,7 +72,7 @@
                     <div class="row row-cols-1">
                         <div class="col">
                             <h5 class="mb-3">Description</h5>
-                            <p>{{$unit->description ?? 'No Description'}}</p>
+                            <p>{!!$unit->description ?? 'No Description'!!}</p>
                         </div>
                     </div>
                 </div>

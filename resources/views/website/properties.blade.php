@@ -24,20 +24,10 @@
                     <div class="col">
                         <div class="woo-filter-bar p-3 d-flex flex-wrap justify-content-between">
                             <div class="d-flex flex-wrap">
-                                <form class="woocommerce-ordering" method="get" id="sort-results-form" action="{{ $sortRoute ?? '' }}">
-                                    {{-- <select name="orderby1">
-                                        <option>Any Status</option>
-                                        <option>For Rent</option>
-                                        <option>For Sale</option>
-                                    </select> --}}
-                                    <select name="orderby2">
-                                        {{-- <option>Default</option> --}}
-                                        {{-- <option>Most Popular</option> --}}
-                                        {{-- <option>Top Rated</option> --}}
+                                <form class="woocommerce-ordering" method="get" id="sort-results-form" action="{{ $sortRoute ?? '' }}">                                    
+                                    {{-- <select name="orderby2">
                                         <option selected>{{ __('Newest Items') }}</option>
-                                        {{-- <option>Price low to high</option> --}}
-                                        {{-- <option>Price hight to low</option> --}}
-                                    </select>
+                                    </select> --}}
                                 </form>
                             </div>
                             <div class="d-flex">
@@ -51,8 +41,6 @@
                                         {!! __('results') !!}
                                 </span>
                                 <form class="view-category" method="get">
-                                    {{-- <button title="Grid" class="grid-view current" value="grid" name="display" type="submit"><i class="flaticon-grid-1 flat-mini"></i></button> --}}
-                                    {{-- <button title="List" class="list-view" value="list" name="display" type="submit"><i class="flaticon-grid flat-mini"></i></button> --}}
                                 </form>
                             </div>
                         </div>

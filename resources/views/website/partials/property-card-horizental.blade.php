@@ -5,9 +5,6 @@
             <div class="item">
                 <a href="{{ route('propertyShow', ['unit' => $unit]) }}"><img src="{{ ($unit->getMedia('unit-photos')->count()) ? $unit->websiteImage : 'assets/images/new/property-grid-1.jpg'}}" alt="{{$unit->name}} image {{$loop->iteration}}"></a>
             </div>
-            {{-- <div class="item">
-                <a href="{{ route('propertyShow', ['unit' => $unit]) }}"><img src="assets/images/property_grid/property-grid-2.png" alt="Image Not Found!"></a>
-            </div> --}}
         </div>
         <a href="{{ route('propertyShow', ['unit' => $unit]) }}" class="listing-ctg text-white"><i class="{{ $unit->property_type_icon }}"></i><span>{{$unit->propertyTypeText}}</span></a>
         <ul class="position-absolute quick-meta">

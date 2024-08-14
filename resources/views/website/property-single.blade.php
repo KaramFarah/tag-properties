@@ -2,7 +2,7 @@
 @section('pageTitle', __($unit->name) . ' | ' . __('All Properties') . ' | ' . config('panel.website_title'))
 @section('styles')
     {{-- <link rel="stylesheet" href="{{asset('assets/webfonts/bootstrap_icons/bootstrap-icons.css')}}"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> --}}
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -180,12 +180,12 @@
                                 @foreach($unit->attachments as $_file)
                                     <div class="row mb-10" id="{{$_file->id}}">
                                         <div class="col-11 justify-content-start">
-                                            @auth
-                                                <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->iteration }}</a></p>
+                                            <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->iteration }}</a></p>
+                                            {{-- @auth
                                             @endauth
                                             @guest
                                                 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#downloadAttachment" data-bs-value="{{ $_file->getUrl() }}">{{ __('Download File') }} {{ $loop->iteration }}</button>
-                                            @endguest
+                                            @endguest --}}
                                         </div>
                                     </div>
                                 @endforeach

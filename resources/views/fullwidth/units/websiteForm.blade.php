@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-30">
-                        <x-inputs.text inputClass="required" inputName="price" inputId="price" inputLabel="{{ __('All Inclusive Price (AED)') }}" inputRequired="required" inputValue="{{ old('price', $unit->price ?? '') }}" type="number"/>
+                        <x-inputs.text inputClass="required" inputName="price" inputId="price" inputLabel="{{ __('All Inclusive Price') . ' ( ' . config('panel.currency') . ' )'}}" inputRequired="required" inputValue="{{ old('price', $unit->price ?? '') }}" type="number"/>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -226,12 +226,17 @@
                     <div class="d-flex">
                         <input type="file" class="form-control" id="attachment-file" name="attachment-file[]">
                     </div>
+                    <small style="color: red">
+                        @error('attachment-file.*')
+                            {{$message}}
+                        @enderror
+                    </small>
                 </div>
             </div>
             <div class="mb-30">
-                <h6 class="mb-30">Floor Plans</h6>
+                {{-- <h6 class="mb-30">Floor Plans</h6> --}}
                 <div class="col-md-12 mb-30">
-                    <label class="mb-30 font-fifteen font-700 w-100">{{__('Photos') }}</label>
+                    <label class="mb-30 font-fifteen font-700 w-100">{{__('Floor Plans') }}</label>
                     @forelse($unit->floorPlanPhotos as $_file)
                         <div class="row mb-10" id="{{$_file->id}}">
                             <div class="col-11 justify-content-start">
@@ -248,6 +253,11 @@
                     <div class="d-flex">
                         <input type="file" class="form-control" id="floorPlan-file" name="floorPlan-file[]" multiple>
                     </div>
+                    <small style="color: red">
+                        @error('floorPlan-file.*')
+                            {{$message}}
+                        @enderror
+                    </small>
                 </div>
                 <div>
                     <h6 class="mb-30">Details <small class="fst-italic fw-normal">(optional)</small></h6>
@@ -335,9 +345,9 @@
                 <x-inputs.text inputName="project_name" inputId="project_name" inputLabel="{{ __('Name') }}" inputValue="{{ old('project_name', '') }}" class="mb-30"  />
                 <x-inputs.select inputName="developer" inputLabel="{{ __('Developer')}}" inputId="developers" placeholder="{{ __('Developers') }}" :inputValue="old('developer')" :inputData="$developers" class="mb-30" inputClass="select2" showButtons="false" />                
                 <x-inputs.select inputName="status" inputId="status" inputLabel="{{ __('Status') }}"  :inputData="$types" showButtons="false" inputValue="" class="mb-30"/>
-                <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Community') }}"  inputValue="{{ old('community') }}" class="mb-30"/>
-                <x-inputs.select inputName="province" inputId="province" inputLabel="{{ __('Emirate') }}" :inputData="$emirates" showButtons="false" inputValue="" inputClass=" required" class="mb-30" />
-                <x-inputs.select inputName="project_country" inputLabel="{{ __('Country')}}" inputId="project_country" placeholder="{{ __('Select Country') }}" inputValue="" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" />
+                <x-inputs.text inputName="community" inputId="community" inputLabel="{{ __('Address') }}"  inputValue="{{ old('community') }}" class="mb-30"/>
+                {{-- <x-inputs.select inputName="province" inputId="province" inputLabel="{{ __('Emirate') }}" :inputData="$emirates" showButtons="false" inputValue="" inputClass=" required" class="mb-30" /> --}}
+                {{-- <x-inputs.select inputName="project_country" inputLabel="{{ __('Country')}}" inputId="project_country" placeholder="{{ __('Select Country') }}" inputValue="" :inputData="$countries" inputClass="select2 mb-30 required" showButtons="false" /> --}}
             </div>
             <div class="modal-footer">
               <button type="button" id="saveProject" class="btn btn-primary closemodelAddNewProject" data-bs-dismiss="modal">{{ __('Add') }}</button>

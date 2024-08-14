@@ -7,6 +7,9 @@
     tinymce.init({
         selector: '#project_features'
     });
+    tinymce.init({
+        selector: '#description'
+    });
     </script>
 @endsection
 @include('website.partials.Dashboard-map-integration')
@@ -20,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <x-inputs.textarea inputName="description" inputId="description" inputLabel="{{ __('Project Description') }}" inputRequired="" inputValue="{{ old('description', $project->description ?? '') }}" inputHint="" inputClass="" class="mb-30" type="text"/>
+                    <x-inputs.textarea inputName="description" inputId="description" inputLabel="{{ __('Project Description') }}" inputRequired="" inputValue="{!!old('description', $project->description ?? '')!!}" inputHint="" inputClass="" class="mb-30" type="text"/>
                 </div>
             </div>
             <div class="row">
@@ -40,7 +43,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <x-inputs.select inputName="status" inputId="status" inputLabel="{{ __('Status') }}" inputRequired="required" :inputData="$types" showButtons="false" inputValue="{{ $project->status ?? '' }}" />
+                    <x-inputs.select inputName="status" inputId="status" inputLabel="{{ __('Status') }}" inputRequired="required" :inputData="$types" showButtons="false" inputValue="{{ old('status', $project->status) ?? '' }}" />
                 </div>
                 <div class="col-lg-6">
                     <x-inputs.select inputName="opening_date" inputId="opening_date" inputLabel="{{ __('Completion Date') }}" inputRequired="" :inputData="$openDates" showButtons="false" inputValue="{{ old('opening_date', $project->opening_date) }}" class="mb-30" />
@@ -80,12 +83,15 @@
                 <h4 class="mb-4">{{ __('Additional Information') }}</h4>
                 <p>{{ __('Attached range plans will be displayed in the project details page') }}</p>
                 <div>
+                    {{-- karam --}}
                     <h6 class="mb-3">{{ __('Price & Size Ranges') }}</h6>
                     @if ($project->ranges->count())
                         <div class="accordion" id="formContainer">
                             @foreach ($project->ranges as $range)
-                                <div class="accordion-item" style="border: none" id="{{$loop->index}}range">
-                                    @include('fullwidth.projects.rangePlans', ['loop_index' => $loop->index])
+                            {{-- {{$range->id}} --}}
+                            {{-- {{$loop->index}}range --}}
+                                <div class="accordion-item" style="border: none" id="{{$range->id}}range">
+                                    @include('fullwidth.projects.rangePlans', ['loop_index' => $range->id])
                                 </div>
                             @endforeach
                         </div>
@@ -166,10 +172,13 @@
                         <div class="form-row">
                             <div class="col mb-20">
                                 <input type="file" id="attachments" name="attachments[]" class="form-control {{ $errors->has('atachments') ? 'is-invalid' : '' }}" multiple="multiple">
-                                @if($errors->has('attachments'))
-                                    <span class="text-danger">{{ $errors->first('attachments') }}</span>
-                                @endif
+                               
                             </div>
+                            <small style="color: red">
+                                @error('attachments.*')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -193,10 +202,13 @@
                         <div class="form-row">
                             <div class="col mb-20">
                                 <input type="file" id="projectPhotos" name="projectPhotos[]" class="form-control {{ $errors->has('projectPhotos') ? 'is-invalid' : '' }}" multiple="multiple">
-                                @if($errors->has('projectPhotos'))
-                                    <span class="text-danger">{{ $errors->first('projectPhotos') }}</span>
-                                @endif
+                            
                             </div>
+                            <small style="color: red">
+                                @error('projectPhotos.*')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -220,10 +232,13 @@
                         <div class="form-row">
                             <div class="col mb-20">
                                 <input type="file" id="brochure" name="brochure" class="form-control {{ $errors->has('brochure') ? 'is-invalid' : '' }}">
-                                @if($errors->has('brochure'))
-                                    <span class="text-danger">{{ $errors->first('brochure') }}</span>
-                                @endif
+                             
                             </div>
+                            <small style="color: red">
+                                @error('brochure')
+                                    {{$message}}
+                                @enderror
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -349,14 +364,6 @@
 @endpush
 
 @push('scripts')
-    <script>
-        $(document).ready(function(){
-            $("#cities").select2({
-                // tags:true,
-            })
-        });
-    </script>
-
 
     {{-- DELETE PHOTOS --}}
     <script>

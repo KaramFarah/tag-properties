@@ -6,7 +6,7 @@
                 <li>
                     {{-- {{dd($recent->ThumbImage)}} --}}
                     <a href="{{route('propertyShow' , ['unit' => $recent->slug])}}">
-                        <img style="width: 80px; height: 80px;" src="{{$recent->recent}}" alt="{{$recent->name}} thumbnail image">
+                        <img style="width: 80px; height: 80px;" src="{{$recent->recent ?? asset('assets/images/new/property-grid-1.jpg')}}" alt="{{$recent->name}} thumbnail image">
                     </a>
                     <div class="thumb-body">
                         <h6 class="listing-title"><a href="{{route('propertyShow' , ['unit' => $recent->slug])}}">{{$recent->name}}</a></h6>

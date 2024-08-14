@@ -41,7 +41,7 @@ class PropertiesController extends WebsiteController
         $propertyStatuses = (new Unit)->propertyStatuses;
         
         //  SEARCH START
-        // dd(request()->get('sprice'));
+
         $price_array = explode(';' , request()->get('sprice'));
         $price_string = implode(';' , $price_array);
         $price_array[0] == 0 ? '' : $price_string = '0' . $price_string; 
@@ -52,7 +52,7 @@ class PropertiesController extends WebsiteController
             $query->where('price' , '>=' , $price_array[0])
             ->where('price' , '<=' , $price_array[1]);
         }
-        // dd($query->get());
+
         if(request()->has('sproperty_purpose') && request()->get('sproperty_purpose')){
             $query->where('property_purpose', request()->get('sproperty_purpose'));
         }
@@ -70,12 +70,13 @@ class PropertiesController extends WebsiteController
         }
         
         if(request()->has('smax_area') && request()->get('smax_area')){
-            $query->where('area_sqft' , '<=' , request()->get('smax_area'));
+            $smax_area = (int)request()->get('smax_area');
+            $query->where('area_sqft' , '<=' , $smax_area);
         }
         if(request()->has('smin_area') && request()->get('smin_area')){
-            $query->where(['area_sqft' , '>=' , request()->get('smin_area')]);
+            $smin_area = (int)request()->get('smin_area');
+            $query->where('area_sqft' , '>=' , $smin_area);
         }
-        // $query->where('garage', request()->query('sgarage'));
         
         if(request()->has('sstatus') && request()->get('sstatus')){
             $query->where('property_status', request()->get('sstatus'));
@@ -84,31 +85,6 @@ class PropertiesController extends WebsiteController
         if(request()->has('saddress') && request()->get('saddress')){
             $query->where('address', 'like' , "%" . request()->get('saddress') . "%");
         }
-        // isset($countries[$project->country]) ? $country = $countries[$project->country] : $country = '';
-        // if($slocation){
-            
-        //     $query->whereHas('project', function($query) use($slocation){
-        //         $query->where('community' , 'like' , "%$slocation%")
-        //         ->orWhere('city' , 'like' , "%$slocation%");
-        //         // ->orWhere('country' ,'like', "%$slocation%");
-        //     });
-        // }
-        // dd($scountry);
-
-
-        // if($slocation){
-        //     $query->whereHas('project', function($query){
-        //         $slocation = request()->slocation;
-        //         $query->where('location' , 'like' , "%$slocation%")
-        //         ->orWhere('city' , 'like' , '%$slocation%');
-        //     });
-        // }
-
-        // if(request()->has('scountry') && request()->get('scountry')){
-        //     $query->whereHas('project', function($query) {
-        //         $query->where('country' , request()->get('scountry'));
-        //     });
-        // }
 
         if(request()->has('sFeatures') && request()->get('sFeatures')){
             $query->whereHas( 'tags', function($query){
@@ -118,12 +94,14 @@ class PropertiesController extends WebsiteController
         }
 
         if(request()->has('skeyword') && request()->get('skeyword')){
-            $query->where(function($query) {
-                $query->where('name' , 'like' , '%'.request()->has('skeyword').'%')
-                ->orWhere('description' , 'like' , '%'.request()->has('skeyword').'%');
+            // $skeyword = 
+            $query->where(function($query){
+                $query->where('name' , 'like' , "%".request()->get('skeyword')."%")
+                ->orWhere('description' , 'like' , "%".request()->get('skeyword')."%")
+                ;
             });
         }
-        $units = $query->paginate(20)->withQueryString();
+        $units = $query->paginate(10)->withQueryString();
 
         // Get Favourite Units
         if(auth()->user()){
@@ -184,12 +162,13 @@ class PropertiesController extends WebsiteController
 
     public function sendEmails()
     {
-        // dd(true);
+        // dd(request()->reciver);
         
-        // $validator = request()->validate([
-        //     'g-recaptcha-response' => ['required', new ReCaptchaV3('submitMail')],
-        // ]);
-
+        $validator = request()->validate([
+            'mailer.email' => 'email',
+            'mailer.phone' => 'digits:10',
+            // 'g-recaptcha-response' => ['required', new ReCaptchaV3('submitMail')],
+        ]);
         $user = null;
         if (config('panel.create_lead_getHelp')){
 
@@ -204,8 +183,12 @@ class PropertiesController extends WebsiteController
             'properties'   => request()->get('mailer'),
             'host'         => request()->ip() ?? null,
         ]);
-
-        $user = User::firstOrCreate(['email' => config('panel.contact_receiver')]);
+        if(isset(request()->reciver)){
+            $user = User::where('email' , request()->reciver)->first();
+        }
+        if(is_null($user))
+            $user = User::firstOrCreate(['email' => config('panel.contact_receiver')]);
+        
 
         Notification::send($user, new GetHelp(request()->get('mailer')));
        

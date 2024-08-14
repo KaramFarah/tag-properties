@@ -6,24 +6,24 @@
 @section('content')
     @include('website.layout.title-banner-light')
 <!--============== Property Slider Start ==============-->
-    <div class="full-row p-0 mb-30">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="single-project" style="width:1200px; height:600px; margin:0 auto 30px;">
-                        @if ($project->coverImage)
+    @if ($project->coverImage)
+        <div class="full-row p-0 mb-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="single-project" style="width:1200px; height:600px; margin:0 auto 30px;">
                             <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:in; kenburnsscale:1.2;"> <img width="1920" height="1280" src="{{ $project->coverImage ?? '' }}" class="ls-bg" alt="{{ $project->name }} covor image" /> </div>
-                        @endif
-                        @if ($project->projectPhotos->count())
-                            @foreach ($project->projectPhotos as $_photo)
-                                <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:in; kenburnsscale:1.2;"> <img width="1920" height="1280" src="{{ $_photo->getUrl() }}" class="ls-bg" alt="{{ $project->name }} image {{ $loop->iteration }}" /> </div>
-                            @endforeach
-                        @endif
+                            @if ($project->projectPhotos->count())
+                                @foreach ($project->projectPhotos as $_photo)
+                                    <div class="ls-slide" data-ls="duration:7500; transition2d:5; kenburnszoom:in; kenburnsscale:1.2;"> <img width="1920" height="1280" src="{{ $_photo->getUrl() }}" class="ls-bg" alt="{{ $project->name }} image {{ $loop->iteration }}" /> </div>
+                                @endforeach
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     {{-- Property Details Start --}}
     <div class="full-row pt-30">
         <div class="container">
@@ -78,12 +78,17 @@
                                 </ul>
                             </div>
                         </div>
+                        
                         <div class="row row-cols-1">
                             <div class="col">
                                 <h5 class="mb-3">Description</h5>
-                                <p>{!!$project->description ?? ''!!}</p>
+                                @if (isset($project->description))
+                                    <p>{!!$project->description ?? ''!!}</p>
+                                @else
+                                    <p>No Description</p>
+                                @endif
+                                </div>
                             </div>
-                        </div>
                     </div>
                     @if (!is_null($project->project_features))
                         <div class="property-overview border rounded bg-white p-30 mb-30">
@@ -101,15 +106,16 @@
                                 <div class="col">
                                     {{-- Property Features --}}
                                     <h5 class="mb-3">{{ __('Brochure') }}</h5>
+                                    {{-- karam --}}
                                     @foreach($project->brochure as $_file)
                                         <div class="row mb-10" id="{{$_file->id}}">
                                             <div class="col-11 justify-content-start">
-                                                @auth
-                                                    <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</a></p>
+                                                <p><a href="{{ $_file->getUrl() }}" class="primary-link" target="blank"><i class="fa-regular fa-file pe-1"></i>{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</a></p>
+                                                {{-- @auth
                                                 @endauth
                                                 @guest
                                                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#downloadAttachment" data-bs-value="{{ $_file->getUrl() }}">{{ __('Download File') }} {{ $loop->count > 1 ? $loop->iteration : '' }}</button>
-                                                @endguest
+                                                @endguest --}}
                                             </div>
                                         </div>
                                     @endforeach
@@ -117,26 +123,29 @@
                             </div>
                         </div>
                     @endif
-                    <div class="property-overview border rounded bg-white p-30 mb-30">
-                        <div class="row row-cols-1">
-                            <div class="col">
-                                <h5 class="mb-3">{{ __('More Information') }}</h5>
-                                <ul class="list-three-fold-width">
-                                    @if ($project->developers->count())
-                                        <li>
-                                            <span class="font-500">{{ _('Developers') }}:</span> 
-                                            @foreach ($project->developers as $_developer)
-                                                <span class="badge bg-primary fs-6 m-1">{{ $_developer->name }}</span>
-                                            @endforeach
-                                        </li>
-                                    @endif
-                                    @if ($project->opening_date)
-                                        <li><span class="font-500">{{ _('Completion Date') }}:</span> {{$project->opening_date}}</li>
-                                    @endif
-                                </ul>
+                    @if ($project->developers->count() || $project->opening_date)
+                        <div class="property-overview border rounded bg-white p-30 mb-30">
+                            <div class="row row-cols-1">
+                                <div class="col">
+                                    <h5 class="mb-3">{{ __('More Information') }}</h5>
+                                    <ul class="list-three-fold-width">
+                                        @if ($project->developers->count())
+                                            <li>
+                                                <span class="font-500">{{ _('Developers') }}:</span> 
+                                                @foreach ($project->developers as $_developer)
+                                                    <span class="badge bg-primary fs-6 m-1">{{ $_developer->name }}</span>
+                                                @endforeach
+                                            </li>
+                                        @endif
+                                        @if ($project->opening_date)
+                                            <li><span class="font-500">{{ _('Completion Date') }}:</span> {{$project->opening_date}}</li>
+                                        @endif
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        
+                    @endif
                     @if ($project->ranges->count())
                         <div class="property-overview border rounded bg-white p-30 mb-30">
                             <div class="row row-cols-1">
@@ -314,6 +323,7 @@
             </div>
         </div>
     </div>
+    {{-- karam2 --}}
     @include('website.partials.download-modal')
 @endsection
 

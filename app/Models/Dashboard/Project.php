@@ -144,23 +144,27 @@ class Project extends BaseModel implements HasMedia
     }
 
     public function getFullLocationAttribute(){
-        $location = '';
         
-        if ($this->cities) {
-            foreach($this->cities as $_city){
-                $location .= ($location ? ', ' : '') . $_city->name;
-            }
-        }
-
-        $location .= ($location ? ', ' : '') . $this->community;
-
-        $location .= ($location ? ', ' : '') . $this->province;
-
-        $country = DashboardHelper::countries()[$this->country] ?? '';
-        $country ? ($location .= ($location ? ', ' : '') . $country) : '';
-
-        return $location;
+        return $this->community ?? 'No Location Info';
     }
+    // public function getFullLocationAttribute(){
+    //     $location = '';
+        
+    //     if ($this->cities) {
+    //         foreach($this->cities as $_city){
+    //             $location .= ($location ? ', ' : '') . $_city->name;
+    //         }
+    //     }
+
+    //     $location .= ($location ? ', ' : '') . $this->community;
+
+    //     $location .= ($location ? ', ' : '') . $this->province;
+
+    //     $country = DashboardHelper::countries()[$this->country] ?? '';
+    //     $country ? ($location .= ($location ? ', ' : '') . $country) : '';
+
+    //     return $location;
+    // }
 
     public function getMinPriceAttribute()
     {

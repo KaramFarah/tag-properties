@@ -19,7 +19,7 @@ class CallsController extends BaseController
     public function index()
     {
         abort_if(Gate::denies('call_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        $query = Call::orderBy('date');
+        $query = Call::orderBy('date' , 'DESC');
         if($search = request()->input('search')){
             $query->where('type' , 'like' , "%$search%")
                 ->orWhere('topic' , 'like' , "%$search%")

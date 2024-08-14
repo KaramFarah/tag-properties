@@ -70,6 +70,7 @@
             })
 
             $(document).on('click' , '.remove-range' , function(){
+                console.log('we in remove range');
                 // $(this).parent().remove();
                 swal.fire({
                             title: "Are you sure?",
@@ -81,6 +82,7 @@
                             confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        console.log(this);
                         $(this).closest('.Container').remove();
                         swal.fire({
                         title: "Deleted!",

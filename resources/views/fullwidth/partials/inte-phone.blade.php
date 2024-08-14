@@ -21,7 +21,7 @@
             autoInsertDialCode:true,
             autoPlaceholder:"aggressive",
             containerClass:"w-100",
-            initialCountry:"AE",
+            initialCountry:"SY",
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@19.5.2/build/js/utils.js",
         });
         // validation

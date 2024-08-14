@@ -10,39 +10,39 @@
                             <div class="listing-sidebar">
                                 <div class="widget advance_search_widget">
                                     <h5 class="mb-30">{{ __('Search Projects') }}</h5>
-                                    <form class="rounded quick-search form-icon-right" method="get">
+                                    <form action="{{route('projects.index')}}" class="rounded quick-search form-icon-right" method="get">
                                         @csrf
                                         <div class="row g-3">
                                             <div class="col-12">
-                                                <input type="text" class="form-control" name="keyword" placeholder="Enter Keyword...">
+                                                <input type="text" class="form-control" value="{{request()->get('sKeyword')}}" name="sKeyword" placeholder="Enter Keyword...">
                                             </div>
                                             <div class="col-12">
-                                                <x-inputs.select inputName="status" inputId="status" inputLabel="{{ __('Status') }}" :inputData="$statuses" showButtons="false" inputValue="{{ $sStatus ?? '' }}" />
+                                                <x-inputs.select inputName="status" inputId="status" inputLabel="{{ __('Status') }}" :inputData="$statuses" showButtons="false" inputValue="{{ request()->get('status') ?? '' }}" />
                                             </div>
                                             <div class="col-12">
                                                 <div class="position-relative">
-                                                    <input type="text" class="form-control" name="city" placeholder="Address">
+                                                    <input type="text" class="form-control" value="{{request()->get('city')}}" name="city" placeholder="Address">
                                                     <i class="flaticon-placeholder flat-mini icon-font y-center text-dark"></i>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-12">
+                                            <div class="col-12">
                                                 <div class="position-relative">
                                                     <button class="form-control price-toggle toggle-btn" data-target="#data-range-price">Price <i class="fas fa-angle-down font-mini icon-font y-center text-dark"></i></button>
                                                     <div id="data-range-price" class="price_range price-range-toggle w-100">
                                                         <div class="area-filter price-filter">
                                                             <span class="price-slider">
-                                                                <input class="filter_price" type="text" name="price" value="1000;100000000" />
+                                                                <input class="filter_price" type="text" name="price" value="{{request()->get('price') ?? '1000;100000000'}}" />
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> --}}
-                                            {{-- <div class="col-6">
-                                                <input type="text" class="form-control" name="keyword" placeholder="Min Area">
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" class="form-control" name="keyword" placeholder="Max Area">
-                                            </div> --}}
+                                                <input type="text" class="form-control" name="min_size" value="{{request()->get('min_size')}}" placeholder="Min Size">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control" name="max_size" value="{{request()->get('max_size')}}" placeholder="Max Size">
+                                            </div>
                                             <div class="col-12">
                                                 <button class="btn btn-primary w-100">Search</button>
                                             </div>
@@ -82,39 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row row-cols-1 g-4">
-                                @foreach ($projects as $project)
-                                    <div class="col">
-                                        <!-- Projects Grid -->
-                                        <div class="property-list-1 bg-white property-block border rounded transation-this hover-shadow p-2">
-                                            <div class="overflow-hidden position-relative transation thumbnail-img bg-secondary hover-img-zoom">
-                                                <div class="cata position-absolute">
-                                                    <span class="sale bg-primary text-white">{{$project->statusText}}</span></div>
-                                                <div class="owl-carousel single-carusel dot-disable nav-between-in">
-                                                    
-                                                    @foreach ($project->allPhotos as $photo)
-                                                        <div class="item">
-                                                            <a href="{{route('projects.show' , ['project' => $project])}}"><img src="{{$photo->getUrl('website')}}" alt="{{$project->name}} cover image"></a>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                                <ul class="position-absolute quick-meta">
-                                                </ul>
-                                            </div>
-                                            <div class="property_text px-3">
-                                                <div class="post-meta font-small text-uppercase list-color-primary">
-                                                    <a href="{{route('projects.show' , ['project' => $project])}}" class="listing-ctg"><i class="fa-solid fa-building"></i><span>{{$project->project_type}}</span></a>
-                                                </div>
-                                                <h5 class="listing-title"><a href="{{route('projects.show' , ['project' => $project])}}">{{$project->name}}</a></h5>
-                                                <span class="listing-location"><i class="fas fa-map-marker-alt"></i> {{$project->fullLocation}} </span>
-                                                <div class="entry-footer">
-                                                    <span class="listing-price">@if ($project->minPrice) {{'Starts At: '}}{{config('panel.currency')}} {{$project->minPrice}}@endif</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>                                    
-                                @endforeach
-                            </div>
+                            @include('website.partials.projects_card' , ['projects' => $projects])
                             <div class="row">
                                 <div class="col mt-5">
                                     <nav aria-label="Page navigation example">

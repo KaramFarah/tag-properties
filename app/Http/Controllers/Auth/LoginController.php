@@ -95,6 +95,8 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $local_title = 'Login / Register';
+        
+        
         return view(config('panel.template') . '.auth.login', compact('local_title'));
     }
 

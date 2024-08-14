@@ -202,6 +202,7 @@
                             confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        console.log(this);
                         $(this).closest('.Container').remove();
                         swal.fire({
                         title: "Deleted!",

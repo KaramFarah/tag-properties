@@ -52,7 +52,8 @@
                                         </td>
                                         <td class="w-50">
                                             <h5 class="text-secondary font-400">{{ $item->name }} </h5>
-                                            {{ Str::words($item->description, 4) }}
+                                            {!!Str::words($item->description, 4)!!}
+                                            {{-- {{ Str::words($item->description, 4) }} --}}
                                         </td>
                                         <td class="w-25">
                                             @foreach($item->developers as $_developer)

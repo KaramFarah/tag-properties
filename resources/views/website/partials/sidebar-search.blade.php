@@ -49,10 +49,11 @@
                 </div>
             </div>
             <div class="col-12">
-                <input type="text" class="form-control" name="sbedrooms" placeholder="Max Bedrooms" value="{{$search['sbedrooms'] ?? ''}}">
+                {{-- {{$search['sbedrooms'] ?? ''}} --}}
+                <input type="text" class="form-control" name="sbedrooms" placeholder="Max Bedrooms" value="{{request()->get('sbedrooms')}}">
             </div>
             <div class="col-12">
-                <input type="text" class="form-control" name="sbathrooms" placeholder="Max Bathrooms" value="{{$search['sbathrooms'] ?? ''}}">                                  
+                <input type="text" class="form-control" name="sbathrooms" placeholder="Max Bathrooms" value="{{request()->get('sbathrooms')}}">                                  
             </div>
             {{-- <div class="col-12">
                 <select class="form-control" name="sgarage">
